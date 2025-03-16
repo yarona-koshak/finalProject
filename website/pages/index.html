@@ -4,29 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-
-
+  <link rel="stylesheet" href="indexcss.css">
 <style>
- .headerbuttons{
+ #textTable {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end; /* Aligns text to the right */
+      padding-right: 20px; /* Adjust padding for spacing */
+    }
 
-    display: flex;
-    justify-content: flex-end; 
-    gap: 10px; 
-}
-.header-container {
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-            padding: 10px; 
-        }
-
-</style>
+    #textTable div {
+      padding: 10px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      width: 300px; /* Adjust width for the table */
+      text-align: right; /* Align text to the right */
+    }
+  </style>
 </head>
 <body>
   <header>
   <title>Index Page</title>
-  <div class="header-container">
+  <div class="space-between-container">
   <select id="leanguageChooise">
     <option id="opteng">Eng</option>
     <option id="optru">Рус</option>
@@ -38,8 +37,21 @@
 </div>
 </div>
   </header>
+  <hr>
  
   <h1>The main page of the website</h1>
+
+  <div id="buts">
+  <button>billboard</button>
+  <button>order tickets</button>
+  <button>archives</button>
+</div>
+  <hr>
+  <footer class="space-between-container">
+    <div>&#169; קונצרטים בגינה </div>
+    <div>0545587523</div>
+    <img src="/website/img/ariallog.webp" style="height: 50px; width: 50px;">
+  </footer>
   <script type="module" src="index.js"></script>
 </body>
 

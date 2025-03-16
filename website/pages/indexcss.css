@@ -1,0 +1,36 @@
+
+ .headerbuttons{
+
+    display: flex;
+    justify-content: flex-end; 
+    gap: 10px; 
+}
+
+        #buts {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding-left: 20px; 
+  }
+  
+  #buts button {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ccc; 
+    margin: 5px; 
+}
+p{
+    display: flex;
+    justify-content: flex-end; 
+    gap: 10px; 
+}
+.space-between-container{
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px; 
+
+}
+
+   
