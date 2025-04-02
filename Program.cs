@@ -60,6 +60,7 @@ class Database() : DbBase("database")
   /*──────────────────────────────╮
   │ Add your database tables here │
   ╰──────────────────────────────*/
+  public DbSet<User> Users = default!;
 }
 
 class User(string id, string username, string password)
@@ -68,3 +69,15 @@ class User(string id, string username, string password)
   public string Username { get; set; } = username;
   public string Password { get; set; } = password;
 }
+// class Artist()
+// {
+//     [Key] public string Id { get; set; } = default;
+//   public string Artistname { get; set; } = Artistname;
+
+// }
+// class Consert(string Artistname, int price, string date))
+// {
+//     public string Artist { get; set; } = Artist;
+//     public string Date { get; set; } = date;
+//   public int Price { get; set; } = price;
+// }
