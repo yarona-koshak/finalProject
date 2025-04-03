@@ -1,22 +1,22 @@
 import { send } from "../utilities";
 
-let titleInput = document.getElementById("titleInput") as HTMLInputElement;
-let authorInput = document.getElementById("authorInput") as HTMLInputElement;
+let artistInput = document.getElementById("artistInput") as HTMLInputElement;
+let dateInput = document.getElementById("dateInput") as HTMLInputElement;
 let imageSourceInput = document.getElementById("imageSourceInput") as HTMLInputElement;
 let descriptionTextarea = document.getElementById("descriptionTextarea") as HTMLTextAreaElement;
+let priceInput= document.querySelector("#priceInput") as HTMLInputElement
 let addButton = document.getElementById("addButton") as HTMLButtonElement;
 
 addButton.onclick = async function () {
   await send(
-    "addBook",
+    "addArtist",
     [
-      titleInput.value,
-      authorInput.value,
+        artistInput.value,
+        dateInput.value,
       imageSourceInput.value,
       descriptionTextarea.value,
-      localStorage.getItem("userId"),
+      priceInput.value,
     ]
   );
-
   location.href = "billboard.html";
 }

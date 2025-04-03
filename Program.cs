@@ -28,7 +28,7 @@ class Program
       }
       else if (request.ExpectsHtml())
       {
-        var file = new File("website/pages/404.html");
+        var file = new File("website/pages/418.html");
         response.SetStatusCode(404);
         response.Send(file);
       }
@@ -36,10 +36,19 @@ class Program
       {
         try
         {
-          /*──────────────────────────────────╮
-          │ Handle your custome requests here │
-          ╰──────────────────────────────────*/
-          response.SetStatusCode(405);
+            if (request.Path == "addArtist")
+          {
+            var (Artistname, date, imageSource, description, price) =
+              request.GetBody<(string, string, string, string, int)>();
+
+            var artist = new Artist(Artistname, date, imageSource, description, price);
+
+            database.Artists.Add(artist);
+          }
+          else{
+              response.SetStatusCode(405);
+          }
+        
 
           database.SaveChanges();
         }
@@ -60,7 +69,7 @@ class Database() : DbBase("database")
   /*──────────────────────────────╮
   │ Add your database tables here │
   ╰──────────────────────────────*/
-  public DbSet<User> Users = default!;
+  public DbSet<Performens> Artists = default!;
 }
 
 class User(string id, string username, string password)
@@ -69,15 +78,16 @@ class User(string id, string username, string password)
   public string Username { get; set; } = username;
   public string Password { get; set; } = password;
 }
-// class Artist()
-// {
-//     [Key] public string Id { get; set; } = default;
-//   public string Artistname { get; set; } = Artistname;
-
-// }
-// class Consert(string Artistname, int price, string date))
-// {
-//     public string Artist { get; set; } = Artist;
-//     public string Date { get; set; } = date;
-//   public int Price { get; set; } = price;
-// }
+class Performens( string Artistname,
+  string date,
+  string imageSource,
+  string description,
+  int price)
+{
+  [Key] public int Id { get; set; } = default!;
+  public string Artistname { get; set; } = Artistname;
+  public string date { get; set; } = date;
+  public string ImageSource { get; set; } = imageSource;
+  public string Description { get; set; } = description;
+  public int price { get; set; } = price;
+}
