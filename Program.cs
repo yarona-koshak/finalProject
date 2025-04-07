@@ -41,7 +41,7 @@ class Program
             var (Artistname, date, imageSource, description, price) =
               request.GetBody<(string, string, string, string, int)>();
 
-            var artist = new Artist(Artistname, date, imageSource, description, price);
+            var artist = new Performens(Artistname, date, imageSource, description, price);
 
             database.Artists.Add(artist);
           }
