@@ -1,4 +1,4 @@
-import { send } from "../utilities";
+import { send } from "../../utilities";
 
 let artistInput = document.getElementById("artistInput") as HTMLInputElement;
 let dateInput = document.getElementById("dateInput") as HTMLInputElement;
