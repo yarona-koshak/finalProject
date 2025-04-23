@@ -3,7 +3,11 @@
 
     display: flex;
     justify-content: flex-end; 
-    gap: 10px; 
+    gap: 10px;
+     size: 30px; 
+}
+.editb{
+    size: 45px; 
 }
 
         #buts {
@@ -11,6 +15,7 @@
     flex-direction: column; 
     align-items: flex-start; 
     padding-left: 20px; 
+    size: 30px; 
   }
   
   #buts button {
@@ -18,7 +23,8 @@
     padding: 15px;
     text-align: center;
     border: 1px solid #ccc; 
-    margin: 5px; 
+    margin: 5px;
+    size: 30px;  
 }
 p{
     display: flex;
@@ -32,4 +38,9 @@ p{
     padding: 10px; 
 
 }
-  
+.hidden {
+    display: none !important;
+  }
+  header{
+    background-color:antiquewhite;
+  }
