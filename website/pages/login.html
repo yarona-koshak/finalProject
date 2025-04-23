@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../general.css">
+  <title>Log In</title>
+  <style>
+    #passwordInput {
+  -webkit-text-security: disc;
+}
+
+#messageDiv {
+  color: red;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Log In</h1>
+
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type="text" id="usernameInput"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="text" id="passwordInput"></td>
+      </tr>
+    </table>
+
+    <br>
+    
+    <button id="submitButton">Submit</button>
+
+    <br>
+
+    <div id="messageDiv"></div>
+
+  </div>
+
+
+  <script type="module" src="login.js"></script>
+</body>
+
+</html>
