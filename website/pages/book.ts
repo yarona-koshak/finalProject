@@ -1,11 +1,14 @@
+import { send } from "../utilities";
+
 export type Book = {
     Id: number;
     Title: string;
     Author: string;
     ImageSource: string;
     Description: string;
+    Price:Number|null;
   }
-import { send } from "../../utilities";
+
 
 let query = new URLSearchParams(location.search);
 

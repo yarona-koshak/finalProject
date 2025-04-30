@@ -36,7 +36,7 @@ class Program
       {
         try
         {
-            if (request.Path == "signUp")
+          if (request.Path == "signUp")
           {
             var (username, password) = request.GetBody<(string, string)>();
 
@@ -71,9 +71,9 @@ class Program
 
             response.Send(username);
           }
-           else if (request.Path == "getBooks")
+          else if (request.Path == "getBooks")
           {
-            var books = database.Books.ToArray();
+            var books = database.Artists.ToArray();
 
             response.Send(books);
           }
@@ -81,62 +81,62 @@ class Program
           {
             var userId = request.GetBody<string>();
 
-            var uploadedByMe = database.Books.Where(book => book.UploaderId == userId);
+            // var uploadedByMe = database.Artists.Where(book => book.UploaderId == userId);
 
-            var favorites = database.Favorites
-              .Where(favorite => favorite.UserId == userId)
-              .Select(favorite => favorite.Book);
+            // var favorites = database.Favorites
+            //   .Where(favorite => favorite.UserId == userId)
+            //   .Select(favorite => favorite.Book);
 
-            response.Send((favorites, uploadedByMe));
+            // response.Send((favorites, uploadedByMe));
           }
           else if (request.Path == "addBook")
           {
-            var (title, author, imageSource, description, uploaderId) =
-              request.GetBody<(string, string, string, string, string)>();
+            var (artistName, date, imageSource, description, price) =
+              request.GetBody<(string, string, string, string, int)>();
 
-            var book = new Book(title, author, imageSource, description, uploaderId);
+            var artist = new Artist(artistName, date, imageSource, description, price);
 
-            database.Books.Add(book);
+            database.Artists.Add(artist);
           }
           else if (request.Path == "getBookInfo")
           {
-            var (userId, bookId) = request.GetBody<(string?, int)>();
+            // var (userId, bookId) = request.GetBody<(string?, int)>();
 
-            var book = database.Books
-              .Include(book => book.Uploader)
-              .First(book => book.Id == bookId)!;
+            // var book = database.Artists
+            //   .Include(book => book.Uploader)
+            //   .First(book => book.Id == bookId)!;
 
-            var uploader = book.Uploader.Username;
+            // var uploader = book.Uploader.Username;
 
-            bool isFavorite = false;
-            if (userId != null)
-            {
-              isFavorite = database.Favorites.Any(
-                favorite => favorite.UserId == userId && favorite.BookId == bookId
-              );
-            }
+            // bool isFavorite = false;
+            // if (userId != null)
+            // {
+            //   isFavorite = database.Favorites.Any(
+            //     favorite => favorite.UserId == userId && favorite.BookId == bookId
+            //   );
+            // }
 
-            response.Send((book, uploader, isFavorite));
-          }
-          else if (request.Path == "addToFavorites")
-          {
-            var (userId, bookId) = request.GetBody<(string, int)>();
+            //   response.Send((book, uploader, isFavorite));
+            // }
+            // else if (request.Path == "addToFavorites")
+            // {
+            //   var (userId, bookId) = request.GetBody<(string, int)>();
 
-            var favorite = new Favorite(userId, bookId);
+            //   var favorite = new Favorite(userId, bookId);
 
-            database.Favorites.Add(favorite);
-          }
-          else if (request.Path == "removeFromFavorites")
-          {
-            var (userId, bookId) = request.GetBody<(string, int)>();
+            //   database.Favorites.Add(favorite);
+            // }
+            // else if (request.Path == "removeFromFavorites")
+            // {
+            //   var (userId, bookId) = request.GetBody<(string, int)>();
 
-            var favorite = database.Favorites.First(
-              favorite => favorite.UserId == userId && favorite.BookId == bookId
-            );
-  
-          response.SetStatusCode(405);
+            //   var favorite = database.Favorites.First(
+            //     favorite => favorite.UserId == userId && favorite.BookId == bookId
+            //   );
 
-          database.SaveChanges();
+            response.SetStatusCode(405);
+
+            database.SaveChanges();
 
           }
         }
@@ -150,50 +150,50 @@ class Program
       response.Close();
     }
   }
-   static void AddStartBooks(Database database)
+  static void AddStartBooks(Database database)
   {
     if (database.IsNewlyCreated())
     {
-      var startUser = new User("startUserId", "Start User", "");
+      var startUser = new User("admin", "admin", "");
 
       database.Users.Add(startUser);
 
       database.SaveChanges();
 
-      var startBooks = new Book[] {
-        new Book(
-          "The Little Prince",
-          "Antoine de Saint-Exupéry",
-          "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1367545443i/157993.jpg",
-          "A pilot stranded in the desert awakes one morning to see, standing before him, the most extraordinary little fellow.",
-          "startUserId"
+      var startBooks = new Artist[] {
+        new Artist(
+        "Mikhail Volkov",
+        "23.02.2024",
+        "https://i.ytimg.com/vi/z49b6zheLIY/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLDYcdOKYYDGXJwLIOPVLQVGaoAgpg",
+        "asya nomer odin",
+        70
         ),
-        new Book(
-          "Life of Pi",
-          "Yann Martel",
-          "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1631251689i/4214.jpg",
-          "Life of Pi is a fantasy adventure novel by Yann Martel published in 2001.",
-          "startUserId"
+        new Artist(
+          "Mikhail Feldman",
+          "15.11.2024",
+          "https://i.ytimg.com/vi/emuwEdrcBUA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDYZq41ayKX66dymXgNZ77qmVQigw",
+          "aaa ijkljnilb",
+          70
         ),
-        new Book(
-          "Catching Fire",
-          "Suzanne Collins",
-          "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722941i/6148028.jpg",
-          "Against all odds, Katniss Everdeen has won the Hunger Games. She and fellow District 12 tribute Peeta Mellark are miraculously still alive.",
-          "startUserId"
+        new Artist(
+          "Marina Kemelman",
+          "21.03.25",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwXkgSyL73KiEAHE3iJRVsMh6Q9tpydaf-ag&s",
+          "my",
+          null
         ),
       };
 
       for (int i = 0; i < startBooks.Length; i++)
       {
-        database.Books.Add(startBooks[i]);
+        database.Artists.Add(startBooks[i]);
       }
 
       database.SaveChanges();
     }
   }
 }
- 
+
 
 
 
@@ -203,8 +203,8 @@ class Database() : DbBase("database")
   │ Add your database tables here │
   ╰──────────────────────────────*/
   public DbSet<User> Users { get; set; } = default!;
-  public DbSet<Book> Books { get; set; } = default!;
-  public DbSet<Favorite> Favorites { get; set; } = default!;
+  public DbSet<Artist> Artists { get; set; } = default!;
+  // public DbSet<Favorite> Favorites { get; set; } = default!;
 }
 
 class User(string id, string username, string password)
@@ -214,31 +214,30 @@ class User(string id, string username, string password)
   public string Password { get; set; } = password;
 }
 
-class Book(
-  string title,
-  string author,
+class Artist(
+  string artistName,
+  string date,
   string imageSource,
   string description,
-  string uploaderId
+  int? price
 )
 {
   [Key] public int Id { get; set; } = default!;
-  public string Title { get; set; } = title;
-  public string Author { get; set; } = author;
+  public string ArtistName { get; set; } = artistName;
+  public string Date { get; set; } = date;
   public string ImageSource { get; set; } = imageSource;
   public string Description { get; set; } = description;
-  public string UploaderId { get; set; } = uploaderId;
-  [ForeignKey("UploaderId")] public User Uploader { get; set; } = default!;
+  public int? Price { get; set; } = price;
 }
 
-class Favorite(string userId, int bookId)
-{
-  [Key] public int Id { get; set; } = default!;
+// class Favorite(string userId, int bookId)
+// {
+//   [Key] public int Id { get; set; } = default!;
 
-  public string UserId { get; set; } = userId;
-  [ForeignKey("UserId")] public User User { get; set; } = default!;
+//   public string UserId { get; set; } = userId;
+//   [ForeignKey("UserId")] public User User { get; set; } = default!;
 
-  public int BookId { get; set; } = bookId;
-  [ForeignKey("BookId")] public Book Book { get; set; } = default!;
-}
+//   public int BookId { get; set; } = bookId;
+//   [ForeignKey("BookId")] public Book Book { get; set; } = default!;
+// }
 
