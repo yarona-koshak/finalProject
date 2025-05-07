@@ -24,4 +24,4 @@ async function appendArtist() {
   // priceHeading.innerText =
   coverImg.src = artical.ImageSource;
   descriptionDiv.innerText = artical.Description;
-}
+} 
