@@ -39,7 +39,7 @@ toOrderTicketsPage.onclick = function () {
     }
     else{
         console.log(leanguageChooise);
-        window.location.href = "/website/pages/order_tickets.html";
+        window.location.href = "/website/pages/orderTickets.html";
     } 
 };
 

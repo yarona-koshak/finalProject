@@ -71,74 +71,37 @@ class Program
 
             response.Send(username);
           }
-          else if (request.Path == "getBooks")
+          else if (request.Path == "getArticals")
           {
             var books = database.Artists.ToArray();
 
             response.Send(books);
           }
-          else if (request.Path == "getSortedBooks")
-          {
-            var userId = request.GetBody<string>();
-
-            // var uploadedByMe = database.Artists.Where(book => book.UploaderId == userId);
-
-            // var favorites = database.Favorites
-            //   .Where(favorite => favorite.UserId == userId)
-            //   .Select(favorite => favorite.Book);
-
-            // response.Send((favorites, uploadedByMe));
-          }
-          else if (request.Path == "addBook")
+          else if (request.Path == "addArtist")
           {
             var (artistName, date, imageSource, description, price) =
-              request.GetBody<(string, string, string, string, int)>();
+              request.GetBody<(string, string, string, string, int?)>();
 
             var artist = new Artist(artistName, date, imageSource, description, price);
 
             database.Artists.Add(artist);
           }
-          else if (request.Path == "getBookInfo")
+          else if (request.Path == "getArtistInfo")
           {
-            // var (userId, bookId) = request.GetBody<(string?, int)>();
+            var (userId, ArtistId) = request.GetBody<(string?, int)>();
 
-            // var book = database.Artists
-            //   .Include(book => book.Uploader)
-            //   .First(book => book.Id == bookId)!;
+            var artist = database.Artists
+              .First(artist => artist.Id == ArtistId)!;
 
-            // var uploader = book.Uploader.Username;
-
-            // bool isFavorite = false;
-            // if (userId != null)
-            // {
-            //   isFavorite = database.Favorites.Any(
-            //     favorite => favorite.UserId == userId && favorite.BookId == bookId
-            //   );
-            // }
-
-            //   response.Send((book, uploader, isFavorite));
-            // }
-            // else if (request.Path == "addToFavorites")
-            // {
-            //   var (userId, bookId) = request.GetBody<(string, int)>();
-
-            //   var favorite = new Favorite(userId, bookId);
-
-            //   database.Favorites.Add(favorite);
-            // }
-            // else if (request.Path == "removeFromFavorites")
-            // {
-            //   var (userId, bookId) = request.GetBody<(string, int)>();
-
-            //   var favorite = database.Favorites.First(
-            //     favorite => favorite.UserId == userId && favorite.BookId == bookId
-            //   );
+              response.Send((artist));
+            }
+        
 
             response.SetStatusCode(405);
 
             database.SaveChanges();
 
-          }
+          
         }
 
         catch (Exception exception)
