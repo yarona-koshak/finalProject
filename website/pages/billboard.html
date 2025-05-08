@@ -7,12 +7,28 @@
     body{
       background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP8yEf3iGZSnvVWMPI5x6DR000A53l1gxlzA&s);
     }
+    img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; 
+    border-radius: 10px;
+  }
+  
+.container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+img:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease;
+}
   </style>
 </head>
 
 <body>
 
-  <div id="booksContainer" class="container"></div>
+  <div id="artistsContainer" class="container"></div>
 <!-- <div id="AdminInDiv" class="hidden"> -->
   <a class="preview" href="addArtist.html">
     <div class="addArtist">
@@ -23,7 +39,7 @@
   <div class="container">
     <h1 id="titleHeading"></h1>
     <h2 id="authorHeading"></h2>
-    <img id="coverImg">
+      <img id="coverImg">
     <h3 id="uploaderHeading"></h3>
     <div id="descriptionDiv"></div>
   </div>

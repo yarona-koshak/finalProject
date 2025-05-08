@@ -5,7 +5,7 @@ import { Artist } from "../type";
 import { send } from "../utilities";
 
 // let loggedInDiv = document.getElementById("loggedInDiv") as HTMLDivElement;
-let booksContainer = document.getElementById("booksContainer") as HTMLDivElement;
+let artistsContainer = document.getElementById("artistsContainer") as HTMLDivElement;
 
 
 let userId = localStorage.getItem("userId");
@@ -21,7 +21,7 @@ async function generatePreviews() {
   let articles = await send("getArticals", []) as Artist[];
     for (let i = 0; i < articles.length; i++) {
       let previewAnchor = createPreviewAnchor(articles[i]);
-      booksContainer.appendChild(previewAnchor);
+      artistsContainer.appendChild(previewAnchor);
     }
   }
 

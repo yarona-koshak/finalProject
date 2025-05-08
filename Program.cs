@@ -15,6 +15,8 @@ class Program
 
     var database = new Database();
 
+    AddStartBooks(database);
+
     while (true)
     {
       (var request, var response) = server.WaitForRequest();
@@ -93,15 +95,15 @@ class Program
             var artist = database.Artists
               .First(artist => artist.Id == ArtistId)!;
 
-              response.Send((artist));
-            }
-        
+            response.Send(artist);
+          }
 
-            response.SetStatusCode(405);
 
-            database.SaveChanges();
+          response.SetStatusCode(405);
 
-          
+          database.SaveChanges();
+
+
         }
 
         catch (Exception exception)

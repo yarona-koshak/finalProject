@@ -11,17 +11,21 @@ let priceHeading = document.getElementById("priceHeading") as HTMLHeadingElement
 let descriptionDiv = document.getElementById("descriptionDiv") as HTMLDivElement;
 
 let userId = localStorage.getItem("userId");
-let ArtistId = Number(query.get("artistId"));
+let ArtistId = parseInt(query.get("articalId")!);
 
 appendArtist();
 
 async function appendArtist() {
-  let [artical, Price] = await send("getArtistIdInfo", [userId, ArtistId]) as [Artist, string];
+  console.log(ArtistId);
+
+  let artical = await send("getArtistInfo", [userId, ArtistId]) as Artist;
+
+  console.log(artical);
 
   document.title = artical.ArtistName;
   dateHeading.innerText = artical.date;
   authorHeading.innerText = artical.ArtistName;
-  // priceHeading.innerText =
+  // priceHeading.innerText =artical.Price;
   coverImg.src = artical.ImageSource;
   descriptionDiv.innerText = artical.Description;
 } 
