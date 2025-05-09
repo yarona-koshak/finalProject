@@ -16,16 +16,16 @@ let ArtistId = parseInt(query.get("articalId")!);
 appendArtist();
 
 async function appendArtist() {
-  console.log(ArtistId);
+  console.log(userId, ArtistId);
 
   let artical = await send("getArtistInfo", [userId, ArtistId]) as Artist;
-
-  console.log(artical);
 
   document.title = artical.ArtistName;
   dateHeading.innerText = artical.date;
   authorHeading.innerText = artical.ArtistName;
-  // priceHeading.innerText =artical.Price;
+  if (artical.Price != null) {
+    priceHeading.innerText = artical.Price.toString() + "₪";
+  }
   coverImg.src = artical.ImageSource;
   descriptionDiv.innerText = artical.Description;
 } 

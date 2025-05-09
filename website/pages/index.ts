@@ -49,3 +49,28 @@ tobillboardPage.onclick = function () {
 toarchivesPage.onclick = function () {
     window.location.href = "/website/pages/archives.html";
 }
+
+let logout = document.getElementById("logout") as HTMLButtonElement;
+let usernameDiv = document.querySelector("#usernameDiv") as HTMLDivElement;
+let userId = localStorage.getItem("userId");
+console.log(userId);
+let userExists = false;
+if (userId != null) {
+  userExists = await send("userExists", userId) as boolean;
+}
+
+console.log(userExists);
+
+if (userExists) {
+  usernameDiv.style.display = "block";
+
+
+  let username = await send("getUsername", userId)
+  usernameDiv.innerText = "Logged In as " + username;
+}
+
+logout.onclick = function () {
+    localStorage.removeItem("userId");
+    alert("you did logout");
+    location.href = "index.html";
+  }
