@@ -38,22 +38,8 @@ class Program
       {
         try
         {
-          if (request.Path == "signUp")
-          {
-            var (username, password) = request.GetBody<(string, string)>();
-
-            var userExists = database.Users.Any(user =>
-              user.Username == username
-            );
-
-            if (!userExists)
-            {
-              var userId = Guid.NewGuid().ToString();
-              database.Users.Add(new User(userId, username, password));
-              response.Send(userId);
-            }
-          }
-          else if (request.Path == "logIn")
+       
+        if (request.Path == "logIn")
           {
             var (username, password) = request.GetBody<(string, string)>();
 
@@ -97,17 +83,7 @@ class Program
 
             response.Send(artist);
           }
-            else if (request.Path == "getUsername")
-          {
-            string userId = request.GetBody<string>();
-            // for (int i = 0; i < users.Length; i++)
-            // {
-            //   if (users[i].id == userId)
-            //   {
-            //     response.Send(users[i].userName);
-            //   }
-            // }
-          }
+
 
 
           response.SetStatusCode(405);
