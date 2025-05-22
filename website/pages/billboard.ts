@@ -6,7 +6,12 @@ import { send } from "../utilities";
 
 // let loggedInDiv = document.getElementById("loggedInDiv") as HTMLDivElement;
 let artistsContainer = document.getElementById("artistsContainer") as HTMLDivElement;
+let deletelater = document.getElementById("deletelater") as HTMLButtonElement;
+let box = document.querySelector(".box") as HTMLDivElement;
 
+deletelater.onclick = function() {
+  box.classList.add("box2");
+};
 
 let userId = localStorage.getItem("userId");
 
