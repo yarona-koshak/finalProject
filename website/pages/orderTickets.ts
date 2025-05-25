@@ -38,4 +38,9 @@
 // //     return event.charAt(0).toUpperCase() + event.slice(1);
 // // }
 
-// let orderBtn = document.
+let orderBtn = document.getElementById("orderBtn") as HTMLButtonElement;
+let box = document.querySelector(".box") as HTMLDivElement;
+
+orderBtn.onclick = function() {
+  box.classList.add("box2");
+};

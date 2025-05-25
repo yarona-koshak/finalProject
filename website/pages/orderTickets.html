@@ -88,14 +88,37 @@ body{
 
         #img {
             display: flex;
-            justify-content: center;
-            align-items: center;
+      justify-content: center;
+      align-items: center;
         }
 
-        .hidden {
-            display: none !important;
-            background-color: #0056b3;
-        }
+      
+    .box {
+      width: 200px;
+      height: 200px;
+      transition: all 1s;
+      opacity: 0;
+      transform: translateY(200px);
+    }
+
+    .box2 {
+      opacity: 1;
+      transform: translateY(-300px);
+    }
+
+    @keyframes moveUpDown {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-150px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
 
     </style>
 </head>
@@ -123,9 +146,7 @@ body{
         </div>
     </div>
 
-    <div id="img" class="hidden">
-        <img src="/website/img/cat.gif" alt="cat gif">
-    </div>
+    <img src="/website/img/cat.gif" class="box">
     <script type="module" src="orderTickets.js"></script>
 </body>
 </html>
