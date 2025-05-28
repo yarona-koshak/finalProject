@@ -127,13 +127,7 @@ class Program
           "aaa ijkljnilb",
           70
         ),
-        new Artist(
-          "Marina Kemelman",
-          "21.03.25",
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwXkgSyL73KiEAHE3iJRVsMh6Q9tpydaf-ag&s",
-          "my",
-          null
-        ),
+       
       };
 
       for (int i = 0; i < startBooks.Length; i++)

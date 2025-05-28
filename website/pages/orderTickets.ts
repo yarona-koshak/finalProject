@@ -42,5 +42,12 @@ let orderBtn = document.getElementById("orderBtn") as HTMLButtonElement;
 let box = document.querySelector(".box") as HTMLDivElement;
 
 orderBtn.onclick = function() {
-  box.classList.add("box2");
+  box.classList.add('box2');
+
+  box.addEventListener('transitionend', () => {
+    setTimeout(() => {
+      alert("Congratulations!");
+      window.location.href = "/website/pages/index.html";
+    }, 3000);
+  }, { once: true });
 };

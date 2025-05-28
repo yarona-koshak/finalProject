@@ -21,6 +21,7 @@
         }
 body{
     background-color: #f3f4f6;
+    overflow: hidden;
 }
         .container {
             background-color: #ffffff;
@@ -99,6 +100,7 @@ body{
       transition: all 1s;
       opacity: 0;
       transform: translateY(200px);
+      position: absolute;
     }
 
     .box2 {
@@ -146,7 +148,10 @@ body{
                 <h2>Order Summary</h2>
                 <p id="orderDetails"></p>
             </div>
-            <img src="/website/img/cat.gif" class="box">
+            <div class="box">
+             <img src="/website/img/cat.gif">
+            </div>
+           
         </div>
         
     
