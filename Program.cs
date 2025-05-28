@@ -59,7 +59,7 @@ class Program
 
             response.Send(username);
           }
-          else if (request.Path == "getArticals")
+          else if (request.Path == "getArtist")
           {
             var books = database.Artists.ToArray();
 
@@ -83,7 +83,14 @@ class Program
 
             response.Send(artist);
           }
+         else if (request.Path == "addArtical")
+          {
+            var (artist_name, artistURL, videoURL) = request.GetBody<(string, string,string)>();
 
+            var artical= new Articals(artist_name,artistURL,videoURL);
+
+            database.Artical.Add(artical);
+          }
 
 
           response.SetStatusCode(405);
@@ -150,7 +157,7 @@ class Database() : DbBase("database")
   ╰──────────────────────────────*/
   public DbSet<User> Users { get; set; } = default!;
   public DbSet<Artist> Artists { get; set; } = default!;
-  // public DbSet<Favorite> Favorites { get; set; } = default!;
+  public DbSet<Artical> Articals { get; set; } = default!;
 }
 
 class User(string id, string username, string password)
@@ -176,14 +183,14 @@ class Artist(
   public int? Price { get; set; } = price;
 }
 
-// class Favorite(string userId, int bookId)
-// {
-//   [Key] public int Id { get; set; } = default!;
-
-//   public string UserId { get; set; } = userId;
-//   [ForeignKey("UserId")] public User User { get; set; } = default!;
-
-//   public int BookId { get; set; } = bookId;
-//   [ForeignKey("BookId")] public Book Book { get; set; } = default!;
-// }
-
+class Artical(
+  string artist_name,
+  string infoURL,
+  string videoURL
+)
+{
+  [Key] public int Id { get; set; } = default!;
+  public string Artist_name { get; set; } = artist_name;
+  public string InfoURL { get; set; } = infoURL;
+  public string VideoURL { get; set; } = videoURL;
+}

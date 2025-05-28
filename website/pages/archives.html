@@ -3,14 +3,40 @@
 
 <head>
   <title>Archive</title>
+  <style>
+    #button{
+      border-radius: 80% ;
+      width: 70px;
+      height: 70px;
+      font-size: large;
+    }
+    .hidden{
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-<div>Congert</div>  
-  
-  <a href="http://www.bards.ru/archives/author.php?id=1996">see the artict </a>
-  <a href="https://www.youtube.com/watch?v=z49b6zheLIY">see the vido</a>
-  <p> how many tickets i bought:</p>
+<div class="addArtistinfo">
+     <button id="button">+</button>
+     <div class="hidden">
+      <span >Artist name </span> <input type="text" id="aName">
+      <br>
+      <span >Artist URL </span> <input type="text" id="aURL">
+      <br>
+      <span >video URL </span> <input type="text" id="vURL">
+      <br>
+      <button id="submit">submit</button>
+     </div>
+    </div>
+    <div id="artistsContainer">
+      <h1>Artists:</h1>
+      <h3 id="artistName"></h3>
+      <h4 id="infourl"></h4>
+      <h4 id="videourl"></h4>
+    </div>
+    <h2 id="myOrder"> My Orders:</h2>
+ <script type="module" src="archive.js"></script>
 </body>
 
 </html>

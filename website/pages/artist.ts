@@ -11,25 +11,25 @@ let priceHeading = document.getElementById("priceHeading") as HTMLHeadingElement
 let descriptionDiv = document.getElementById("descriptionDiv") as HTMLDivElement;
 
 let userId = localStorage.getItem("userId");
-let ArtistId = parseInt(query.get("articalId")!);
+let ArtistId = parseInt(query.get("artistId")!);
 
 appendArtist();
 
 async function appendArtist() {
   console.log(userId, ArtistId);
 
-  let artical = await send("getArtistInfo", [userId, ArtistId]) as Artist;
+  let artist = await send("getArtistInfo", [userId, ArtistId]) as Artist;
 
-  document.title = artical.ArtistName;
-  dateHeading.innerText = artical.date;
-  authorHeading.innerText = artical.ArtistName;
-  if (artical.Price != null) {
-    priceHeading.innerText = artical.Price.toString() + "₪";
+  document.title = artist.ArtistName;
+  dateHeading.innerText = artist.date;
+  authorHeading.innerText = artist.ArtistName;
+  if (artist.Price != null) {
+    priceHeading.innerText = artist.Price.toString() + "₪";
   }
-  coverImg.src = artical.ImageSource;
-  descriptionDiv.innerText = artical.Description;
+  coverImg.src = artist.ImageSource;
+  descriptionDiv.innerText = artist.Description;
 } 
-const checkbox = document.getElementById("agree") as HTMLInputElement;
+let checkbox = document.getElementById("agree") as HTMLInputElement;
 
 checkbox.onchange = function() {
   if (checkbox.checked) {

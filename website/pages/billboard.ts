@@ -18,7 +18,7 @@ generatePreviews();
 
 
 async function generatePreviews() {
-  let articles = await send("getArticals", []) as Artist[];
+  let articles = await send("getArtist", []) as Artist[];
     for (let i = 0; i < articles.length; i++) {
       let previewAnchor = createPreviewAnchor(articles[i]);
       artistsContainer.appendChild(previewAnchor);
@@ -26,18 +26,18 @@ async function generatePreviews() {
   }
 
 
-function createPreviewAnchor(artical: Artist): HTMLAnchorElement {
+function createPreviewAnchor(artist: Artist): HTMLAnchorElement {
   let anchor = document.createElement("a");
   anchor.classList.add("preview");
-  anchor.href = "artist.html?articalId=" + artical.Id;
+  anchor.href = "artist.html?articalId=" + artist.Id;
 
   let img = document.createElement("img");
   img.classList.add("bookImage");
-  img.src = artical.ImageSource;
+  img.src = artist.ImageSource;
   anchor.appendChild(img);
 
   let titleDiv = document.createElement("div");
-  titleDiv.innerText = artical.ArtistName;
+  titleDiv.innerText = artist.ArtistName;
   anchor.appendChild(titleDiv);
 
   return anchor;
