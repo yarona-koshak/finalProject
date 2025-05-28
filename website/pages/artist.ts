@@ -29,3 +29,10 @@ async function appendArtist() {
   coverImg.src = artical.ImageSource;
   descriptionDiv.innerText = artical.Description;
 } 
+const checkbox = document.getElementById("agree") as HTMLInputElement;
+
+checkbox.onchange = function() {
+  if (checkbox.checked) {
+    window.location.href = "/website/pages/orderTickets.html";
+  }
+};
