@@ -87,9 +87,9 @@ class Program
           {
             var (artist_name, artistURL, videoURL) = request.GetBody<(string, string,string)>();
 
-            var artical= new Articals(artist_name,artistURL,videoURL);
+            var artical= new Artical(artist_name,artistURL,videoURL);
 
-            database.Artical.Add(artical);
+            database.Articals.Add(artical);
           }
 
 

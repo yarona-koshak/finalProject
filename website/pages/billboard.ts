@@ -29,7 +29,7 @@ async function generatePreviews() {
 function createPreviewAnchor(artist: Artist): HTMLAnchorElement {
   let anchor = document.createElement("a");
   anchor.classList.add("preview");
-  anchor.href = "artist.html?articalId=" + artist.Id;
+  anchor.href = "artist.html?artistId=" + artist.Id;
 
   let img = document.createElement("img");
   img.classList.add("bookImage");

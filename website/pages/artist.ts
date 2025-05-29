@@ -19,9 +19,10 @@ async function appendArtist() {
   console.log(userId, ArtistId);
 
   let artist = await send("getArtistInfo", [userId, ArtistId]) as Artist;
+  console.log(artist);
 
   document.title = artist.ArtistName;
-  dateHeading.innerText = artist.date;
+  dateHeading.innerText = artist.Date;
   authorHeading.innerText = artist.ArtistName;
   if (artist.Price != null) {
     priceHeading.innerText = artist.Price.toString() + "₪";

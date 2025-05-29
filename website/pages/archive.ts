@@ -21,7 +21,7 @@ submit.onclick = async function () {
       vURL.value,
     ]
   );
-  location.href = "billboard.html";
+  location.href = "archive.html";
 }
 
 import { Artical } from "../type";
@@ -35,14 +35,9 @@ appendArtist();
 
 async function appendArtist() {
 
-  let artical = await send("getArtistInfo", [userId, ArtistId]) as Artical;
+  let artical = await send("getArtialInfo",[]) as Artical[];
 
-  document.title = artical.ArtistName;
-  dateHeading.innerText = artical.date;
-  authorHeading.innerText = artical.ArtistName;
-  if (artical.Price != null) {
-    priceHeading.innerText = artical.Price.toString() + "₪";
-  }
-  coverImg.src = artical.ImageSource;
-  descriptionDiv.innerText = artical.Description;
+  artistName.innerText = artical[].ArtistName;
+  infourl.innerText = artical.InfoURL;
+  videourl.innerText=artical.VideoURL;
 } 
