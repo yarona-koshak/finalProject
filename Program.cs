@@ -91,7 +91,13 @@ class Program
 
             database.Articals.Add(artical);
           }
+           else if (request.Path == "getArticalInfo")
+          {
+          
+            var articals = database.Artical.ToArray();
 
+            response.Send(articals);
+          }
 
           response.SetStatusCode(405);
 
