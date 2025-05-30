@@ -14,7 +14,8 @@ class Program
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/index.html");
 
     var database = new Database();
-
+    database.Articals.RemoveRange(database.Articals);
+    database.SaveChanges();
     AddStartBooks(database);
 
     while (true)
@@ -38,8 +39,8 @@ class Program
       {
         try
         {
-       
-        if (request.Path == "logIn")
+
+          if (request.Path == "logIn")
           {
             var (username, password) = request.GetBody<(string, string)>();
 
@@ -83,18 +84,18 @@ class Program
 
             response.Send(artist);
           }
-         else if (request.Path == "addArtical")
+          else if (request.Path == "addArtical")
           {
-            var (artist_name, artistURL, videoURL) = request.GetBody<(string, string,string)>();
+            var (artist_name, artistURL, videoURL) = request.GetBody<(string, string, string)>();
 
-            var artical= new Artical(artist_name,artistURL,videoURL);
+            var artical = new Artical(artist_name, artistURL, videoURL);
 
             database.Articals.Add(artical);
           }
-           else if (request.Path == "getArticalInfo")
+          else if (request.Path == "getArticalInfo")
           {
-          
-            var articals = database.Artical.ToArray();
+
+            var articals = database.Articals.ToArray();
 
             response.Send(articals);
           }
@@ -140,7 +141,7 @@ class Program
           "aaa ijkljnilb",
           70
         ),
-       
+
       };
 
       for (int i = 0; i < startBooks.Length; i++)

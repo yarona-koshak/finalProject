@@ -4,39 +4,51 @@
 <head>
   <title>Archive</title>
   <style>
-    #button{
-      border-radius: 80% ;
+    #button {
+      border-radius: 80%;
       width: 70px;
       height: 70px;
       font-size: large;
     }
-    .hidden{
+
+    .hidden {
       display: none;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+       display: flex;
+        flex-wrap: wrap; 
+        gap: 20px; 
+        justify-content: center; 
+       margin: 20px;
     }
   </style>
 </head>
 
 <body>
-<div class="addArtistinfo">
-     <button id="button">+</button>
-     <div class="hidden">
-      <span >Artist name </span> <input type="text" id="aName">
+  <div class="addArtistinfo">
+    <button id="button">+</button>
+    <div class="hidden">
+      <span>Artist name </span> <input type="text" id="aName">
       <br>
-      <span >Artist URL </span> <input type="text" id="aURL">
+      <span>Artist URL </span> <input type="text" id="aURL">
       <br>
-      <span >video URL </span> <input type="text" id="vURL">
+      <span>video URL </span> <input type="text" id="vURL">
       <br>
       <button id="submit">submit</button>
-     </div>
     </div>
-    <div id="artistsContainer">
-      <h1>Artists:</h1>
-      <h3 id="artistName"></h3>
-      <h4 id="infourl"></h4>
-      <h4 id="videourl"></h4>
-    </div>
-    <h2 id="myOrder"> My Orders:</h2>
- <script type="module" src="archive.js"></script>
+  </div>
+  <h1>Artists:</h1>
+  <div id="artistsContainer">
+  </div>
+  <h2 id="myOrder"> My Orders:</h2>
+  <script type="module" src="archive.js"></script>
 </body>
 
 </html>

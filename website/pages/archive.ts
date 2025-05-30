@@ -6,13 +6,13 @@ button.addEventListener("click", () => {
   infoShow.classList.toggle("hidden");
 });
 
-let submit=document.querySelector("#submit") as HTMLButtonElement;
-let aName= document.getElementById("aName") as HTMLInputElement;
-let aURL= document.getElementById("aURL") as HTMLInputElement;
-let vURL= document.getElementById("vURL") as HTMLInputElement;
+let submit = document.querySelector("#submit") as HTMLButtonElement;
+let aName = document.getElementById("aName") as HTMLInputElement;
+let aURL = document.getElementById("aURL") as HTMLInputElement;
+let vURL = document.getElementById("vURL") as HTMLInputElement;
 
 submit.onclick = async function () {
- 
+
   await send(
     "addArtical",
     [
@@ -21,45 +21,68 @@ submit.onclick = async function () {
       vURL.value,
     ]
   );
-  location.href = "/website/page/archives.html";
+  location.href = "/website/pages/archives.html";
 }
 
 import { Artical } from "../type";
 
-let artistName = document.getElementById("artistName") as HTMLHeadingElement;
-let infourl = document.getElementById("infourl") as HTMLHeadingElement;
-let videourl = document.getElementById("videourl") as HTMLHeadingElement;
-let artistsContainer=document.querySelector("artistsContainer")as HTMLDivElement;
+// let artistName = document.getElementById("artistName") as HTMLHeadingElement;
+// let infourl = document.getElementById("infourl") as HTMLHeadingElement;
+// let videourl = document.getElementById("videourl") as HTMLHeadingElement;
+let artistsContainer = document.querySelector("#artistsContainer") as HTMLDivElement;
 
 appendArtist();
 
 async function appendArtist() {
 
-  let artical = await send("getArticalInfo",[]) as Artical[];
-
+  let artical = await send("getArticalInfo", []) as Artical[];
+  console.log(artical);
   for (let i = 0; i < artical.length; i++) {
-     console.log(artical);
-      // let previewAnchor = createPreviewAnchor(artical[i]);
-      // artistsContainer.appendChild(previewAnchor);
-    }
-  // artistName.innerText = artical.ArtistName;
-  // infourl.innerText = artical.InfoURL;
-  // videourl.innerText=artical.VideoURL;
-} 
 
-function createPreviewAnchor(artical: Artical): HTMLAnchorElement {
-  let anchor = document.createElement("a");
-  anchor.classList.add("preview");
-  anchor.href = "artist.html?artistId=" + artist.Id;
+    let card = document.createElement("div");
+    card.classList.add("card");
+    artistsContainer.appendChild(card);
 
-  let img = document.createElement("img");
-  img.classList.add("bookImage");
-  img.src = artist.ImageSource;
-  anchor.appendChild(img);
+    let cardTable = document.createElement("table");
+    card.appendChild(cardTable);
 
-  let titleDiv = document.createElement("div");
-  titleDiv.innerText = artist.ArtistName;
-  anchor.appendChild(titleDiv);
+    let nameTr = document.createElement("tr");
+    cardTable.appendChild(nameTr)
 
-  return anchor;
+    let nameTitleTd = document.createElement("td");
+    nameTitleTd.innerText = "Name: ";
+    nameTr.appendChild(nameTitleTd);
+
+    let nameTd = document.createElement("td");
+    nameTd.innerText = artical[i].Artist_name;
+    nameTr.appendChild(nameTd);
+
+    let InfoURLTr = document.createElement("tr");
+    cardTable.appendChild(InfoURLTr)
+
+    let infoTitleTd = document.createElement("td");
+    infoTitleTd.innerText = "Info: ";
+    InfoURLTr.appendChild(infoTitleTd);
+
+    let infourl = document.createElement("a");
+   infourl.innerText = artical[i].InfoURL;
+    infourl.href = artical[i].InfoURL;
+   infourl.target = "_blank"; // פותח בטאב חדש
+    InfoURLTr.appendChild(infourl);
+
+    let VideoURLTr = document.createElement("tr");
+    cardTable.appendChild(VideoURLTr)
+
+    let videoTitleTd = document.createElement("td");
+    videoTitleTd.innerText = "Video: ";
+    VideoURLTr.appendChild(videoTitleTd);
+
+    let videoTd = document.createElement("a");
+    videoTd.innerText = artical[i].VideoURL;
+    videoTd.href = artical[i].VideoURL;
+    videoTd.target = "_blank";
+    VideoURLTr.appendChild(videoTd);
+
+  }
 }
+

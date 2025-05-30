@@ -7,7 +7,7 @@ export type Artist = {
   Price: Number | null;
 }
 export type Artical = {
-  ArtistName: string;
+  Artist_name: string;
   InfoURL: string;
   VideoURL: string;
 }
