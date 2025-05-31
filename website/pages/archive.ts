@@ -1,41 +1,41 @@
 import { send } from "../utilities";
+import { Artical } from "../type";
 
 let button = document.querySelector("#button") as HTMLButtonElement;
-let infoShow = document.querySelector(".hidden") as HTMLDivElement;
-button.addEventListener("click", () => {
-  infoShow.classList.toggle("hidden");
-});
+let formBox = document.querySelector(".formBox") as HTMLDivElement;
+let submit = document.getElementById("submit") as HTMLButtonElement;
 
-let submit = document.querySelector("#submit") as HTMLButtonElement;
 let aName = document.getElementById("aName") as HTMLInputElement;
 let aURL = document.getElementById("aURL") as HTMLInputElement;
 let vURL = document.getElementById("vURL") as HTMLInputElement;
-
-submit.onclick = async function () {
-
-  await send(
-    "addArtical",
-    [
-      aName.value,
-      aURL.value,
-      vURL.value,
-    ]
-  );
-  location.href = "/website/pages/archives.html";
-}
-
-import { Artical } from "../type";
-
 let artistsContainer = document.querySelector("#artistsContainer") as HTMLDivElement;
+
+// לחיצה על כפתור +
+button.addEventListener("click", () => {
+  formBox.classList.remove("hidden");
+  button.classList.add("hidden");
+});
+
+// לחיצה על כפתור Submit
+submit.addEventListener("click", async () => {
+  await send("addArtical", [
+    aName.value,
+    aURL.value,
+    vURL.value
+  ]);
+
+  formBox.classList.add("hidden");
+  button.classList.remove("hidden");
+
+  // אופציונלי: location.href = "/website/pages/archives.html";
+});
 
 appendArtist();
 
 async function appendArtist() {
-
   let artical = await send("getArticalInfo", []) as Artical[];
-  console.log(artical);
-  for (let i = 0; i < artical.length; i++) {
 
+  for (let a of artical) {
     let card = document.createElement("div");
     card.classList.add("card");
     artistsContainer.appendChild(card);
@@ -44,42 +44,40 @@ async function appendArtist() {
     card.appendChild(cardTable);
 
     let nameTr = document.createElement("tr");
-    cardTable.appendChild(nameTr)
+    cardTable.appendChild(nameTr);
 
     let nameTitleTd = document.createElement("td");
     nameTitleTd.innerText = "Name: ";
     nameTr.appendChild(nameTitleTd);
 
     let nameTd = document.createElement("td");
-    nameTd.innerText = artical[i].Artist_name;
+    nameTd.innerText = a.Artist_name;
     nameTr.appendChild(nameTd);
 
-    let InfoURLTr = document.createElement("tr");
-    cardTable.appendChild(InfoURLTr)
+    let infoTr = document.createElement("tr");
+    cardTable.appendChild(infoTr);
 
     let infoTitleTd = document.createElement("td");
     infoTitleTd.innerText = "Info: ";
-    InfoURLTr.appendChild(infoTitleTd);
+    infoTr.appendChild(infoTitleTd);
 
     let infourl = document.createElement("a");
-   infourl.innerText = artical[i].InfoURL;
-    infourl.href = artical[i].InfoURL;
-   infourl.target = "_blank"; 
-    InfoURLTr.appendChild(infourl);
+    infourl.innerText = a.InfoURL;
+    infourl.href = a.InfoURL;
+    infourl.target = "_blank";
+    infoTr.appendChild(infourl);
 
-    let VideoURLTr = document.createElement("tr");
-    cardTable.appendChild(VideoURLTr)
+    let videoTr = document.createElement("tr");
+    cardTable.appendChild(videoTr);
 
     let videoTitleTd = document.createElement("td");
     videoTitleTd.innerText = "Video: ";
-    VideoURLTr.appendChild(videoTitleTd);
+    videoTr.appendChild(videoTitleTd);
 
     let videoTd = document.createElement("a");
-    videoTd.innerText = artical[i].VideoURL;
-    videoTd.href = artical[i].VideoURL;
+    videoTd.innerText = a.VideoURL;
+    videoTd.href = a.VideoURL;
     videoTd.target = "_blank";
-    VideoURLTr.appendChild(videoTd);
-
+    videoTr.appendChild(videoTd);
   }
 }
-

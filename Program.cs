@@ -14,7 +14,8 @@ class Program
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/index.html");
 
     var database = new Database();
-    // database.Articals.RemoveRange(database.Articals);
+    // var articalToDelete = database.Articals.Find(29);
+    // database.Articals.Remove(articalToDelete);
     // database.SaveChanges();
     AddStartBooks(database);
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Archive</title>
   <style>
     #button {
@@ -19,50 +19,76 @@
       background-color: #ffffff;
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      width: 300px;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+      width: 400px;
       text-align: center;
-       display: flex;
-        flex-wrap: wrap; 
-        gap: 20px; 
-        justify-content: center; 
-       margin: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 20px;
     }
+
     #artistsContainer {
-  display: grid;
-  grid-auto-flow: column; 
-  grid-auto-rows: auto;
-  grid-template-rows: repeat(3, auto); 
- row-gap: 40px;  
-  column-gap: 10px; 
-    width: max-content;   
-}
-      .headers {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-rows: auto;
+      grid-template-rows: repeat(3, auto);
+      row-gap: 40px;
+      column-gap: 10px;
+      width: max-content;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: antiquewhite;
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .addArtistinfo {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+
+    .formBox {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 15px;
+      margin-top: 10px;
+      z-index: 100;
     }
   </style>
 </head>
 
 <body>
   <div class="addArtistinfo">
-    <button id="button" class="hidden">+</button>
-    <div class="hidden">
-      <span>Artist name </span> <input type="text" id="aName">
-      <br>
-      <span>Artist URL </span> <input type="text" id="aURL">
-      <br>
-      <span>video URL </span> <input type="text" id="vURL">
-      <br>
+    <div id="user">h</div>
+    <button id="button">+</button>
+
+    <div class="formBox hidden">
+      <span>Artist name </span> <input type="text" id="aName"><br>
+      <span>Artist URL </span> <input type="text" id="aURL"><br>
+      <span>Video URL </span> <input type="text" id="vURL"><br>
       <button id="submit">submit</button>
     </div>
   </div>
+
   <h1 class="headers">Artists:</h1>
-  <div id="artistsContainer">
-  </div>
-  <h2 id="myOrder" class="headers"> My Orders:</h2>
+  <div id="artistsContainer"></div>
+  <h2 id="myOrder" class="headers">My Orders:</h2>
+
+ 
   <script type="module" src="archive.js"></script>
 </body>
-
 </html>
