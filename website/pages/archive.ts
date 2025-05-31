@@ -10,13 +10,13 @@ let aURL = document.getElementById("aURL") as HTMLInputElement;
 let vURL = document.getElementById("vURL") as HTMLInputElement;
 let artistsContainer = document.querySelector("#artistsContainer") as HTMLDivElement;
 
-// לחיצה על כפתור +
+
 button.addEventListener("click", () => {
   formBox.classList.remove("hidden");
   button.classList.add("hidden");
 });
 
-// לחיצה על כפתור Submit
+
 submit.addEventListener("click", async () => {
   await send("addArtical", [
     aName.value,
@@ -26,8 +26,7 @@ submit.addEventListener("click", async () => {
 
   formBox.classList.add("hidden");
   button.classList.remove("hidden");
-
-  // אופציונלי: location.href = "/website/pages/archives.html";
+  
 });
 
 appendArtist();
