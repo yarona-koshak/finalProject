@@ -14,8 +14,8 @@ class Program
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/index.html");
 
     var database = new Database();
-    database.Articals.RemoveRange(database.Articals);
-    database.SaveChanges();
+    // database.Articals.RemoveRange(database.Articals);
+    // database.SaveChanges();
     AddStartBooks(database);
 
     while (true)
@@ -137,7 +137,7 @@ class Program
         new Artist(
           "Mikhail Feldman",
           "15.11.2024",
-          "https://i.ytimg.com/vi/emuwEdrcBUA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDYZq41ayKX66dymXgNZ77qmVQigw",
+          "https://new.antho.net/wp/wp-content/uploads/2019/08/%D0%9C%D0%B8%D1%88%D0%B0-%D0%A4%D0%B5%D0%BB%D1%8C%D0%B4%D0%BC%D0%B0%D0%BD.jpg",
           "aaa ijkljnilb",
           70
         ),

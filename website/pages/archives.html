@@ -17,7 +17,7 @@
 
     .card {
       background-color: #ffffff;
-      padding: 20px;
+      padding: 30px;
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       width: 300px;
@@ -28,12 +28,26 @@
         justify-content: center; 
        margin: 20px;
     }
+    #artistsContainer {
+  display: grid;
+  grid-auto-flow: column; 
+  grid-auto-rows: auto;
+  grid-template-rows: repeat(3, auto); 
+ row-gap: 40px;  
+  column-gap: 10px; 
+    width: max-content;   
+}
+      .headers {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
   </style>
 </head>
 
 <body>
   <div class="addArtistinfo">
-    <button id="button">+</button>
+    <button id="button" class="hidden">+</button>
     <div class="hidden">
       <span>Artist name </span> <input type="text" id="aName">
       <br>
@@ -44,10 +58,10 @@
       <button id="submit">submit</button>
     </div>
   </div>
-  <h1>Artists:</h1>
+  <h1 class="headers">Artists:</h1>
   <div id="artistsContainer">
   </div>
-  <h2 id="myOrder"> My Orders:</h2>
+  <h2 id="myOrder" class="headers"> My Orders:</h2>
   <script type="module" src="archive.js"></script>
 </body>
 

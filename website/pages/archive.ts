@@ -26,9 +26,6 @@ submit.onclick = async function () {
 
 import { Artical } from "../type";
 
-// let artistName = document.getElementById("artistName") as HTMLHeadingElement;
-// let infourl = document.getElementById("infourl") as HTMLHeadingElement;
-// let videourl = document.getElementById("videourl") as HTMLHeadingElement;
 let artistsContainer = document.querySelector("#artistsContainer") as HTMLDivElement;
 
 appendArtist();
@@ -67,7 +64,7 @@ async function appendArtist() {
     let infourl = document.createElement("a");
    infourl.innerText = artical[i].InfoURL;
     infourl.href = artical[i].InfoURL;
-   infourl.target = "_blank"; // פותח בטאב חדש
+   infourl.target = "_blank"; 
     InfoURLTr.appendChild(infourl);
 
     let VideoURLTr = document.createElement("tr");
