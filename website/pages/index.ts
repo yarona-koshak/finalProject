@@ -22,7 +22,9 @@ let toLoginPage= document.querySelector("#login") as HTMLButtonElement;
 toLoginPage.onclick = function () {
     window.location.href = "/website/pages/login.html";
 };
-
+toSignUpPage.onclick = function () {
+    window.location.href = "/website/pages/signup.html";
+};
 
 // archives , billboard , order_tickets:
 let tobillboardPage = document.querySelector("#billboard") as HTMLButtonElement;

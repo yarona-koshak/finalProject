@@ -100,12 +100,34 @@ class Program
 
             response.Send(articals);
           }
+          else if (request.Path == "signUp")
+          {
+            var (username, password) = request.GetBody<(string, string)>();
 
+            var userExists = database.Users.Any(user =>
+              user.Username == username
+            );
+
+            if (!userExists)
+            {
+              var userId = Guid.NewGuid().ToString();
+              database.Users.Add(new User(userId, username, password));
+              response.Send(userId);
+            }
+          }
+          else if (request.Path == "verifyUserId")
+          {
+            var userId = request.GetBody<string>();
+
+            var varified = database.Users.Any(user => user.Id == userId);
+
+            response.Send(varified);
+          }
+            
           response.SetStatusCode(405);
 
           database.SaveChanges();
-
-
+          }
         }
 
         catch (Exception exception)

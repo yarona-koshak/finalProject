@@ -26,7 +26,7 @@ submit.addEventListener("click", async () => {
 
   formBox.classList.add("hidden");
   button.classList.remove("hidden");
-  
+
 });
 
 appendArtist();
@@ -79,4 +79,32 @@ async function appendArtist() {
     videoTd.target = "_blank";
     videoTr.appendChild(videoTd);
   }
+}
+let greetingDiv = document.getElementById("greetingDiv") as HTMLDivElement;
+
+async function getUserId() {
+  let userId = localStorage.getItem("userId");
+
+  if (userId == null) {
+    return null;
+  }
+
+  let varified = await send("verifyUserId", userId);
+
+  if (!varified) {
+    localStorage.removeItem("userId");
+    return null;
+  }
+
+  return userId;
+}
+
+let userId = await getUserId();
+console.log(userId);
+if (userId != null) {
+  let username = await send("getUsername", userId) as string;
+  greetingDiv.innerText = "Welcome, " + username + "!";
+  
+} else {
+  localStorage.removeItem("userId");
 }
