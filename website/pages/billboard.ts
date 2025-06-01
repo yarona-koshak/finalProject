@@ -1,5 +1,3 @@
-console.log("megiv");
-
 
 import { Artist } from "../type";
 import { send } from "../utilities";
