@@ -14,8 +14,8 @@ class Program
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/index.html");
 
     var database = new Database();
-    // var articalToDelete = database.Artists.Find(3);
-    // database.Artists.Remove(articalToDelete);
+    // var articalToDelete = database.Users.Find(2);
+    // database.Users.Remove(articalToDelete);
     // database.SaveChanges();
     AddStartBooks(database);
 
@@ -45,11 +45,11 @@ class Program
           {
             var (username, password) = request.GetBody<(string, string)>();
 
-            var user = database.Users.First(
-              user => user.Username == username && user.Password == password
-            );
+          var answer = database.Users.FirstOrDefault(
+    userFound => userFound.Username == username && userFound.Password == password
+);
 
-            var userId = user.Id;
+            var userId = answer?.Id;
 
             response.Send(userId);
           }
@@ -128,8 +128,8 @@ class Program
 
           database.SaveChanges();
           }
-        }
-
+      
+        
         catch (Exception exception)
         {
           Log.WriteException(exception);

@@ -11,6 +11,40 @@ let vURL = document.getElementById("vURL") as HTMLInputElement;
 let artistsContainer = document.querySelector("#artistsContainer") as HTMLDivElement;
 
 
+let greetingDiv = document.getElementById("greetingDiv") as HTMLDivElement;
+
+async function getUserId() {
+  let userId = localStorage.getItem("userId");
+
+  if (userId == null) {
+    return null;
+  }
+
+  let varified = await send("verifyUserId", userId);
+
+  if (!varified) {
+    localStorage.removeItem("userId");
+    return null;
+  }
+
+  return userId;
+}
+
+let userId = await getUserId();
+console.log(userId);
+if (userId != null) {
+  let username = await send("getUsername", userId) as string;
+  greetingDiv.innerText = "Welcome, " + username + "!";
+  
+} else {
+  localStorage.removeItem("userId");
+}
+let userAdmin = localStorage.getItem("userId");
+if (userAdmin === "admin") {
+  button.classList.remove("hidden");
+}
+
+
 button.addEventListener("click", () => {
   formBox.classList.remove("hidden");
   button.classList.add("hidden");
@@ -79,32 +113,4 @@ async function appendArtist() {
     videoTd.target = "_blank";
     videoTr.appendChild(videoTd);
   }
-}
-let greetingDiv = document.getElementById("greetingDiv") as HTMLDivElement;
-
-async function getUserId() {
-  let userId = localStorage.getItem("userId");
-
-  if (userId == null) {
-    return null;
-  }
-
-  let varified = await send("verifyUserId", userId);
-
-  if (!varified) {
-    localStorage.removeItem("userId");
-    return null;
-  }
-
-  return userId;
-}
-
-let userId = await getUserId();
-console.log(userId);
-if (userId != null) {
-  let username = await send("getUsername", userId) as string;
-  greetingDiv.innerText = "Welcome, " + username + "!";
-  
-} else {
-  localStorage.removeItem("userId");
 }
