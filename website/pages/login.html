@@ -6,7 +6,7 @@
   <title>Log In</title>
   <style>
     body {
-      background-color: rgb(245, 218, 168);
+      background-color: rgb(236, 230, 217);
       margin: 0;
       height: 100vh;
       display: flex;
@@ -27,14 +27,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color:blanchedalmond;
+      background-color:rgb(214, 201, 181);
       padding: 20px;
       border-radius: 10%;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      
     }
 
     table {
-      margin: 10px 0;
+      margin: 50px 50px;
+   
     }
     #submitButton{
       font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -42,6 +44,9 @@
     }
     input{
       border-radius: 10%;
+    }
+    td,tr{
+      font-size: larger;
     }
   </style>
 </head>
@@ -63,7 +68,7 @@
       </tr>
     </table>
 
-    <button id="submitButton">Submit</button>
+    <button id="submitButton" style="font-size: large;">Submit</button>
 
     <div id="messageDiv"></div>
 
