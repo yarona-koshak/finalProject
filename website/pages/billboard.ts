@@ -2,15 +2,15 @@
 import { Artist } from "../type";
 import { send } from "../utilities";
 
-// let loggedInDiv = document.getElementById("loggedInDiv") as HTMLDivElement;
+let button = document.querySelector("#button") as HTMLButtonElement;
 let artistsContainer = document.getElementById("artistsContainer") as HTMLDivElement;
 
 
-let userId = localStorage.getItem("userId");
+let userAdmin = localStorage.getItem("userId");
+if (userAdmin === "admin") {
+  button.classList.remove("hidden");
+}
 
-// if (userId != null) {
-//   loggedInDiv.classList.remove("hidden");
-// }
 
 generatePreviews();
 

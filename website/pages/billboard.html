@@ -44,6 +44,9 @@ img:hover {
       color: black;
       text-decoration: none;
     }
+      .hidden {
+      display: none;
+    }
 
   </style>
 </head>
@@ -51,9 +54,9 @@ img:hover {
 <body>
 
   <div id="artistsContainer" class="container"></div>
- <div id="AdminInDiv" class="hidden">
+ <div id="AdminInDiv" >
   <a  href="addArtist.html">
-    <div style="display: flex; justify-content: flex-end;"> <button id="button">+</button></div>
+    <div style="display: flex; justify-content: flex-end;"> <button id="button" class="hidden">+</button></div>
   </a>
 </div> 
   <a href="/website/pages/index.html">Go to the main page</a>

@@ -47,7 +47,6 @@ p{
   }
 .button{
   border-radius: 50px 50px 50px 50pc;
-  background-color: bisque;
   font-size: larger;
 }
 
@@ -63,3 +62,36 @@ h1{
       justify-content: center; 
       align-items: center;  
 }
+
+button {
+  background-color: bisque;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  box-shadow: 0 0 10px rgba(255, 179, 71, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: glowPulse 2s infinite alternate;
+}
+
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px 10px rgba(238, 160, 64, 0.7);
+}
+
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 10px rgba(255, 179, 71, 0.4);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 179, 71, 0.8);
+  }
+}
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
