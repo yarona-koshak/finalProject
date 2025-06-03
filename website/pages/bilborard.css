@@ -1,0 +1,43 @@
+    body{
+      background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP8yEf3iGZSnvVWMPI5x6DR000A53l1gxlzA&s);
+      background-size: cover;
+    }
+    img {
+    height: 200px;
+    object-fit: cover; 
+    border-radius: 10px;
+     background-color: #ffffff;
+      padding: 30px;
+      /* border-radius: 8px; */
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 20px;
+  }
+  
+.container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+img:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+  #button {
+      border-radius: 80%;
+      width: 70px;
+      height: 70px;
+      font-size: large; 
+    }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+      .hidden {
+      display: none;
+    }
