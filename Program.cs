@@ -18,6 +18,7 @@ class Program
     // database.Users.Remove(articalToDelete);
     // database.SaveChanges();
     AddStartBooks(database);
+    AddStartArticals(database);
 
     while (true)
     {
@@ -45,9 +46,9 @@ class Program
           {
             var (username, password) = request.GetBody<(string, string)>();
 
-          var answer = database.Users.FirstOrDefault(
-    userFound => userFound.Username == username && userFound.Password == password
-);
+            var answer = database.Users.FirstOrDefault(
+      userFound => userFound.Username == username && userFound.Password == password
+  );
 
             var userId = answer?.Id;
 
@@ -123,13 +124,13 @@ class Program
 
             response.Send(varified);
           }
-            
+
           response.SetStatusCode(405);
 
           database.SaveChanges();
-          }
-      
-        
+        }
+
+
         catch (Exception exception)
         {
           Log.WriteException(exception);
@@ -174,6 +175,46 @@ class Program
 
       database.SaveChanges();
     }
+  }
+  static void AddStartArticals(Database database)
+  {
+    if (database.IsNewlyCreated())
+    {
+      var startArticals = new Artical[] {
+        new Artical(
+          "Михаил Фельдман",
+          "https://did.li/i7Rrl",
+          "https://www.youtube.com/watch?v=emuwEdrcBUA"
+        ),
+        new Artical(
+          "Михаил Волков",
+          "https://did.li/weBgT",
+          "https://www.youtube.com/watch?v=QGgZYWl_dMo"
+        ),
+        new Artical(
+          "Александр Дов",
+          "https://did.li/Np4TY",
+          "https://www.youtube.com/watch?v=sUzbqcRCZ6E"
+        ),
+        new Artical(
+          "Эли Бар-Яалом",
+          "https://did.li/akk6q",
+          "https://www.youtube.com/watch?v=OqFQIDFFGLY"
+        ),
+        new Artical(
+          "Ариэла Марина Меламед",
+          "https://did.li/Op4TY",
+          "https://www.youtube.com/watch?v=cUbuh1GQn28"
+        )
+     };
+        for (int i = 0; i < startArticals.Length; i++)
+      {
+        database.Articals.Add(startArticals[i]);
+      }
+
+      database.SaveChanges();
+    }
+    
   }
 }
 
@@ -223,4 +264,21 @@ class Artical(
   public string Artist_name { get; set; } = artist_name;
   public string InfoURL { get; set; } = infoURL;
   public string VideoURL { get; set; } = videoURL;
+}
+class OrderTicket(
+  string userId,
+  string artistid,
+  int count
+)
+
+{
+  [Key] public int Id { get; set; } = default!;
+  
+public int Count { get; set; } = count;
+  public string UserId { get; set; } = userId;
+  [ForeignKey("UserId")] public User User { get; set; } = default!;
+
+  public int ArtistId { get; set; } = artistid;
+  [ForeignKey("ArtistId")] public Artist Artist { get; set; } = default!;
+
 }
