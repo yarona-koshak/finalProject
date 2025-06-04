@@ -4,7 +4,7 @@
 
     body {
       margin: 200px;
-      background-color: aliceblue;
+      background-color: rgb(245, 231, 204);
     }
 
     .container {
@@ -20,7 +20,6 @@
 
     #submitButton {
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      border-radius: 40%;
     }
 
     input {
