@@ -45,7 +45,7 @@ function triggerConfettiEffect() {
       }
     }, 2000);
 
-    i = i + 1;
+    i++;
   }
 
 
