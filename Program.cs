@@ -124,6 +124,13 @@ class Program
 
             response.Send(varified);
           }
+          else if (request.Path == "getArtistNames")
+          {
+
+            var artistname = database.Artists.ToArray();
+
+            response.Send(artistname);
+          }
 
           response.SetStatusCode(405);
 

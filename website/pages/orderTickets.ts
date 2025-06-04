@@ -1,37 +1,5 @@
-
-// //     const selectedEvent = eventSelect.value;
-// //     const quantity = parseInt(quantityInput.value);
-
-// //     if (quantity < 1) {
-// //         alert('Please enter a valid ticket quantity.');
-// //         return;
-// //     }
-
-// //     const ticketPrice = getEventPrice(selectedEvent);
-// //     const totalPrice = ticketPrice * quantity;
-
-// //     orderDetails.innerHTML = `
-// //         Event: ${capitalizeEventName(selectedEvent)}<br>
-// //         Tickets: ${quantity}<br>
-// //         Price per Ticket: $${ticketPrice}<br>
-// //         Total Price: $${totalPrice}
-// //     `;
-
-// //     orderSummary.style.display = 'block';
-// // });
-
-// // function getEventPrice(event: string): number {
-// //     switch (event) {
-// //         case 'concert': return 50;
-// //         case 'movie': return 12;
-// //         case 'theater': return 40;
-// //         default: return 0;
-// //     }
-// // }
-
-// // function capitalizeEventName(event: string): string {
-// //     return event.charAt(0).toUpperCase() + event.slice(1);
-// // }
+import { Artist } from "../type";
+import { send } from "../utilities";
 
 let orderBtn = document.getElementById("orderBtn") as HTMLButtonElement;
 let box = document.querySelector(".box") as HTMLDivElement;
@@ -46,6 +14,48 @@ orderBtn.onclick = function() {
     }, 3000);
   }, { once: true });
 };
+
+let select=document.querySelector("#select") as HTMLSelectElement;
+let artistName = await send("getArtistNames", []) as Artist[];
+ for (let i = 0; i < artistName.length; i++) {
+      let option= document.createElement("option");
+      option.innerText= artistName[i].ArtistName;
+      select.appendChild(option);
+    }
+
+
+select.addEventListener("change", () => {
+  let selectedName = select.value;
+  let selectedArtist = artistName.find(artist => artist.ArtistName === selectedName);
+  let artistinfodiv=document.querySelector("#artistinfodiv") as HTMLDivElement;
+  if (selectedArtist) {
+    artistinfodiv.innerHTML = `
+      <h2>${selectedArtist.ArtistName}</h2>
+      <p>${selectedArtist.Date}</p>
+      ${selectedArtist.Price}
+    `;
+    artistinfodiv.style.display = "block";
+  } else {
+    artistinfodiv.innerHTML = "";
+    artistinfodiv.style.display = "none";
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // let test= document.getElementById("test") as HTMLButtonElement;
 // test.onclick=function(){
