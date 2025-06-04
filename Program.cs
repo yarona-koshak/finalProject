@@ -205,7 +205,17 @@ class Program
           "Ариэла Марина Меламед",
           "https://did.li/Op4TY",
           "https://www.youtube.com/watch?v=cUbuh1GQn28"
-        )
+        ),
+        new Artical(
+          "Кимельфельд",
+          "https://did.li/DXpOf",
+          "https://www.youtube.com/watch?v=68FFjsz9ypw"
+        ),
+        new Artical(
+          "Светлана и Александр Менделевы",
+          "https://did.li/h49CN",
+          "https://www.youtube.com/watch?v=fwITedTbR9o"
+        ),
      };
         for (int i = 0; i < startArticals.Length; i++)
       {
@@ -264,21 +274,4 @@ class Artical(
   public string Artist_name { get; set; } = artist_name;
   public string InfoURL { get; set; } = infoURL;
   public string VideoURL { get; set; } = videoURL;
-}
-class OrderTicket(
-  string userId,
-  string artistid,
-  int count
-)
-
-{
-  [Key] public int Id { get; set; } = default!;
-  
-public int Count { get; set; } = count;
-  public string UserId { get; set; } = userId;
-  [ForeignKey("UserId")] public User User { get; set; } = default!;
-
-  public int ArtistId { get; set; } = artistid;
-  [ForeignKey("ArtistId")] public Artist Artist { get; set; } = default!;
-
 }

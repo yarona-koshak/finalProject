@@ -4,6 +4,7 @@ import { Artical } from "../type";
 let button = document.querySelector("#button") as HTMLButtonElement;
 let formBox = document.querySelector(".formBox") as HTMLDivElement;
 let submit = document.getElementById("submit") as HTMLButtonElement;
+let home=document.getElementById("home")as HTMLButtonElement;
 
 let aName = document.getElementById("aName") as HTMLInputElement;
 let aURL = document.getElementById("aURL") as HTMLInputElement;
@@ -35,15 +36,20 @@ console.log(userId);
 if (userId != null) {
   let username = await send("getUsername", userId) as string;
   greetingDiv.innerText = "Welcome, " + username + "!";
-  
+  home.classList.remove("hidden");
 } else {
   localStorage.removeItem("userId");
 }
 let userAdmin = localStorage.getItem("userId");
 if (userAdmin === "admin") {
   button.classList.remove("hidden");
+  home.classList.add("hidden");
 }
 
+home.onclick=function(){
+  window.location.href = "/website/pages/index.html";
+
+}
 
 button.addEventListener("click", () => {
   formBox.classList.remove("hidden");

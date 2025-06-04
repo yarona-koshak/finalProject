@@ -1,8 +1,3 @@
-// // document.getElementById('orderBtn')?.addEventListener('click', () => {
-// //     const eventSelect = <HTMLSelectElement>document.getElementById('event');
-// //     const quantityInput = <HTMLInputElement>document.getElementById('quantity');
-// //     const orderSummary = <HTMLDivElement>document.getElementById('orderSummary');
-// //     const orderDetails = <HTMLParagraphElement>document.getElementById('orderDetails');
 
 // //     const selectedEvent = eventSelect.value;
 // //     const quantity = parseInt(quantityInput.value);
@@ -51,3 +46,16 @@ orderBtn.onclick = function() {
     }, 3000);
   }, { once: true });
 };
+
+// let test= document.getElementById("test") as HTMLButtonElement;
+// test.onclick=function(){
+
+// if (confirm("האם להמשיך?")) {
+//   // המשתמש לחץ OK
+//   alert("המשכת");
+// } else {
+//   // המשתמש לחץ Cancel
+//   alert("בוטל");
+// }
+  
+// }
