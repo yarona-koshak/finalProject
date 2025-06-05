@@ -246,6 +246,7 @@ class Database() : DbBase("database")
   public DbSet<User> Users { get; set; } = default!;
   public DbSet<Artist> Artists { get; set; } = default!;
   public DbSet<Artical> Articals { get; set; } = default!;
+    public DbSet<Order> Orders { get; set; } = default!;
 }
 
 class User(string id, string username, string password)
@@ -281,4 +282,15 @@ class Artical(
   public string Artist_name { get; set; } = artist_name;
   public string InfoURL { get; set; } = infoURL;
   public string VideoURL { get; set; } = videoURL;
+}
+class Order(string userId, int tickNum, int artistId)
+{
+  [Key] public int Id { get; set; } = default!;
+
+  public string UserId { get; set; } = userId;
+  [ForeignKey("UserId")] public User User { get; set; } = default!;
+
+  public int ArtistId { get; set; } = artistId;
+  [ForeignKey("ArtistId")] public Artist artist { get; set; } = default!;
+  public int TickNum{ get; set; } = tickNum;
 }

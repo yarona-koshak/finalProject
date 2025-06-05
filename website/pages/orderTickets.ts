@@ -3,18 +3,6 @@ import { send } from "../utilities";
 
 let orderBtn = document.getElementById("orderBtn") as HTMLButtonElement;
 let box = document.querySelector(".box") as HTMLDivElement;
-
-orderBtn.onclick = function() {
-  box.classList.add('box2');
-
-  box.addEventListener('transitionend', () => {
-    setTimeout(() => {
-      alert("Congratulations!");
-      window.location.href = "/website/pages/index.html";
-    }, 3000);
-  }, { once: true });
-};
-
 let select=document.querySelector("#select") as HTMLSelectElement;
 let artistName = await send("getArtistNames", []) as Artist[];
  for (let i = 0; i < artistName.length; i++) {
@@ -40,6 +28,27 @@ select.addEventListener("change", () => {
     artistinfodiv.style.display = "none";
   }
 });
+let nameInput= document.getElementById("name") as HTMLInputElement;
+orderBtn.onclick = function() {
+  if (nameInput.value != ""){
+  if (confirm("Do you want to order")) {
+  box.classList.add('box2');
+
+  box.addEventListener('transitionend', () => {
+    setTimeout(() => {
+      alert("Congratulations!");
+      window.location.href = "/website/pages/index.html";
+    }, 3000);
+  }, { once: true });
+}
+  } 
+else {
+   window.location.href = "/website/pages/orderTickets.html";
+}
+else{
+  alert("you cant order");
+};
+}
 
 
 
@@ -56,16 +65,3 @@ select.addEventListener("change", () => {
 
 
 
-
-// let test= document.getElementById("test") as HTMLButtonElement;
-// test.onclick=function(){
-
-// if (confirm("האם להמשיך?")) {
-//   // המשתמש לחץ OK
-//   alert("המשכת");
-// } else {
-//   // המשתמש לחץ Cancel
-//   alert("בוטל");
-// }
-  
-// }
