@@ -1,5 +1,5 @@
 import { send } from "../utilities";
-import { Artical } from "../type";
+import { Artical, Artist, Order } from "../type";
 
 let button = document.querySelector("#button") as HTMLButtonElement;
 let formBox = document.querySelector(".formBox") as HTMLDivElement;
@@ -119,4 +119,32 @@ async function appendArtist() {
     videoTd.target = "_blank";
     videoTr.appendChild(videoTd);
   }
+}
+let myOrder=document.getElementById("myOrder") as HTMLDivElement;
+getOrder()
+async function getOrder() {
+let order = await send("getAnOrder", userId) as Order[];
+
+ for (let o of order) {
+    let card = document.createElement("div");
+    card.classList.add("card");
+    myOrder.appendChild(card);
+
+    let cardTable = document.createElement("table");
+    card.appendChild(cardTable);
+
+    let nameTr = document.createElement("tr");
+    cardTable.appendChild(nameTr);
+let artistName= await send("getArtistInfo",o.ArtistId)as Artist;
+    let artist= document.createElement("td");
+    artist.innerText = artistName.ArtistName;
+    nameTr.appendChild(artist);
+
+        let numTr = document.createElement("tr");
+    cardTable.appendChild(numTr);
+
+    let quantity= document.createElement("td");
+    quantity.innerText = o.TickNum.toString();
+    nameTr.appendChild(quantity);
+}
 }

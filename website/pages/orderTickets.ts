@@ -32,25 +32,39 @@ let nameInput= document.getElementById("name") as HTMLInputElement;
 orderBtn.onclick = function() {
   if (nameInput.value != ""){
   if (confirm("Do you want to order")) {
+      order();
   box.classList.add('box2');
 
   box.addEventListener('transitionend', () => {
     setTimeout(() => {
       alert("Congratulations!");
-      window.location.href = "/website/pages/index.html";
+      window.location.href = "/website/pages/archives.html";
     }, 3000);
   }, { once: true });
 }
   } 
 else {
+  if(nameInput.value==""){
+    alert("you can not order");
+  }
    window.location.href = "/website/pages/orderTickets.html";
 }
-else{
-  alert("you cant order");
-};
 }
+let quantity= document.getElementById("quantity")as HTMLInputElement;
+let userId = localStorage.getItem("userId");
 
-
+async function order() {
+   let selectedName = select.value;
+  let selectedArtist = artistName.find(artist => artist.ArtistName === selectedName) ;
+ await send(
+    "makeAnOrder",
+    [
+       userId,
+      quantity.value,
+    selectedArtist?.Id
+    ]
+  )
+}
 
 
 

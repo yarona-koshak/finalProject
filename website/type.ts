@@ -11,3 +11,8 @@ export type Artical = {
   InfoURL: string;
   VideoURL: string;
 }
+export type Order = {
+  UserId: string;
+  ArtistId: number;
+  TickNum: number;
+}

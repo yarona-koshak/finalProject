@@ -131,7 +131,32 @@ class Program
 
             response.Send(artistname);
           }
+          else if (request.Path == "makeAnOrder")
+          {
+            var (userId, quantity, selectedArtist) = request.GetBody<(string, int, int)>();
 
+            var order = new Order(userId, quantity, selectedArtist);
+
+            database.Orders.Add(order);
+          }
+          // else if (request.Path == "removeOrder")
+          // {
+          //   var (userId, bookId) = request.GetBody<(string, int)>();
+
+          //   var favorite = database.Favorites.First(
+          //     favorite => favorite.UserId == userId && favorite.BookId == bookId
+          //   );
+
+          //   database.Favorites.Remove(favorite);
+          // }
+           else if (request.Path == "getAnOrder")
+          {
+            var userId = request.GetBody<string>();
+
+            var myOrder = database.Orders.Where(or => or.UserId == userId).ToArray();
+
+            response.Send(myOrder);
+          }
           response.SetStatusCode(405);
 
           database.SaveChanges();
