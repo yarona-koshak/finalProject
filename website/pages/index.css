@@ -27,11 +27,7 @@
     width: 100px;
     height: 100px;
 }
-p{
-    display: flex;
-    justify-content: flex-end; 
-    gap: 10px; 
-}
+
 .space-between-container{
     display: flex;
     justify-content: space-between; 
@@ -48,10 +44,6 @@ p{
 .button{
   border-radius: 50px 50px 50px 50pc;
   font-size: larger;
-}
-
-option{
-  font-size: large;
 }
 
 body{
