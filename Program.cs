@@ -79,7 +79,7 @@ class Program
           }
           else if (request.Path == "getArtistInfo")
           {
-            var (userId, ArtistId) = request.GetBody<(string?, int)>();
+          var (userId, ArtistId) = request.GetBody<(string?, int)>();
 
             var artist = database.Artists
               .First(artist => artist.Id == ArtistId)!;
@@ -133,9 +133,9 @@ class Program
           }
           else if (request.Path == "makeAnOrder")
           {
-            var (userId, quantity, selectedArtist) = request.GetBody<(string, int, int)>();
+            var (userId, selectedArtist, quantity) = request.GetBody<(string, int, int)>();
 
-            var order = new Order(userId, quantity, selectedArtist);
+            var order = new Order(userId,selectedArtist,  quantity);
 
             database.Orders.Add(order);
           }
@@ -154,8 +154,7 @@ class Program
             var userId = request.GetBody<string>();
 
             var myOrder = database.Orders.Where(or => or.UserId == userId).ToArray();
-
-            response.Send(myOrder);
+            Console.WriteLine(myOrder);
           }
           response.SetStatusCode(405);
 
@@ -308,7 +307,7 @@ class Artical(
   public string InfoURL { get; set; } = infoURL;
   public string VideoURL { get; set; } = videoURL;
 }
-class Order(string userId, int tickNum, int artistId)
+class Order(string userId, int artistId, int tickNum)
 {
   [Key] public int Id { get; set; } = default!;
 

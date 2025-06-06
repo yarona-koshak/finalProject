@@ -135,9 +135,10 @@ let order = await send("getAnOrder", userId) as Order[];
 
     let nameTr = document.createElement("tr");
     cardTable.appendChild(nameTr);
-let artistName= await send("getArtistInfo",o.ArtistId)as Artist;
+    let ArtistId=o.ArtistId as number;
+     let artistName = await send("getArtistInfo",[userId,ArtistId]) as Artist;
     let artist= document.createElement("td");
-    artist.innerText = artistName.ArtistName;
+    artist.innerText = artistName.ArtistName; 
     nameTr.appendChild(artist);
 
         let numTr = document.createElement("tr");

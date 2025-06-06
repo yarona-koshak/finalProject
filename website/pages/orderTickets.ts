@@ -56,12 +56,16 @@ let userId = localStorage.getItem("userId");
 async function order() {
    let selectedName = select.value;
   let selectedArtist = artistName.find(artist => artist.ArtistName === selectedName) ;
+  console.log( typeof selectedArtist?.Id);
+  console.log( typeof userId);
+  console.log(typeof quantity.value);
+
  await send(
     "makeAnOrder",
     [
        userId,
-      quantity.value,
-    selectedArtist?.Id
+       selectedArtist?.Id,
+      parseInt(quantity.value)
     ]
   )
 }
