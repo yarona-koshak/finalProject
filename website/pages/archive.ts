@@ -5,7 +5,7 @@ let button = document.querySelector("#button") as HTMLButtonElement;
 let formBox = document.querySelector(".formBox") as HTMLDivElement;
 let submit = document.getElementById("submit") as HTMLButtonElement;
 let home=document.getElementById("home")as HTMLButtonElement;
-
+let orderTiltel=document.querySelector("#orderTiltel") as HTMLHeadingElement;
 let aName = document.getElementById("aName") as HTMLInputElement;
 let aURL = document.getElementById("aURL") as HTMLInputElement;
 let vURL = document.getElementById("vURL") as HTMLInputElement;
@@ -37,6 +37,8 @@ if (userId != null) {
   let username = await send("getUsername", userId) as string;
   greetingDiv.innerText = "Welcome, " + username + "!";
   home.classList.remove("hidden");
+  orderTiltel.classList.remove("hidden");
+
 } else {
   localStorage.removeItem("userId");
 }
@@ -120,6 +122,8 @@ async function appendArtist() {
     videoTr.appendChild(videoTd);
   }
 }
+
+
 let myOrder=document.getElementById("myOrder") as HTMLDivElement;
 getOrder()
 async function getOrder() {
@@ -128,24 +132,29 @@ let order = await send("getAnOrder", userId) as Order[];
  for (let o of order) {
     let card = document.createElement("div");
     card.classList.add("card");
+    card.classList.add("remove");
     myOrder.appendChild(card);
 
-    let cardTable = document.createElement("table");
+    let cardTable = document.createElement("div");
     card.appendChild(cardTable);
 
-    let nameTr = document.createElement("tr");
+    let nameTr = document.createElement("div");
     cardTable.appendChild(nameTr);
     let ArtistId=o.ArtistId as number;
      let artistName = await send("getArtistInfo",[userId,ArtistId]) as Artist;
-    let artist= document.createElement("td");
+    let artist= document.createElement("h3");
     artist.innerText = artistName.ArtistName; 
     nameTr.appendChild(artist);
-
-        let numTr = document.createElement("tr");
-    cardTable.appendChild(numTr);
-
-    let quantity= document.createElement("td");
-    quantity.innerText = o.TickNum.toString();
+    let quantity= document.createElement("h4");
+    quantity.innerText = "your tickets number :"+o.TickNum.toString();
     nameTr.appendChild(quantity);
-}
+    
+      let removeOrder = document.createElement("button");
+  removeOrder.innerText = "Unbook";
+  removeOrder.onclick = function () {
+    send("removeOrder", [o.UserId,o.ArtistId]);
+    card.remove();
+  };
+card.appendChild(removeOrder);
+  }
 }

@@ -139,16 +139,16 @@ class Program
 
             database.Orders.Add(order);
           }
-          // else if (request.Path == "removeOrder")
-          // {
-          //   var (userId, bookId) = request.GetBody<(string, int)>();
+          else if (request.Path == "removeOrder")
+          {
+            var (userId, ArtistId) = request.GetBody<(string, int)>();
 
-          //   var favorite = database.Favorites.First(
-          //     favorite => favorite.UserId == userId && favorite.BookId == bookId
-          //   );
+            var favorite = database.Orders.First(
+              favorite => favorite.UserId == userId && favorite.ArtistId == ArtistId
+            );
 
-          //   database.Favorites.Remove(favorite);
-          // }
+            database.Orders.Remove(favorite);
+          }
            else if (request.Path == "getAnOrder")
           {
             var userId = request.GetBody<string>();
