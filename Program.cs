@@ -154,7 +154,7 @@ class Program
             var userId = request.GetBody<string>();
 
             var myOrder = database.Orders.Where(or => or.UserId == userId).ToArray();
-            Console.WriteLine(myOrder);
+          response.Send(myOrder);
           }
           response.SetStatusCode(405);
 
