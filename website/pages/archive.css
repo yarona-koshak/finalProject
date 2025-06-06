@@ -64,6 +64,15 @@
       font-family:monospace;
     }
     .remove {
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: grid;
+      grid-auto-flow: column;
+      grid-auto-rows: auto;
+  grid-template-rows: repeat(3, auto);
+}
+#myOrder{
+    display: grid;
+      grid-auto-flow: column;
+      grid-auto-rows: auto;
+  grid-template-rows: repeat(2, auto);
+
 }
