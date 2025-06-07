@@ -145,7 +145,7 @@ class Program
 
             var order = new AdminOrder(selectedArtist,phone, name, quantity);
 
-            database.AdminOrder.Add(order);
+            database.AdminOrders.Add(order);
           }
           else if (request.Path == "removeOrder")
           {
