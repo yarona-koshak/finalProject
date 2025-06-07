@@ -32,25 +32,39 @@ toarchivesPage.onclick = function () {
 
 let logout = document.getElementById("logout") as HTMLButtonElement;
 let usernameDiv = document.querySelector("#usernameDiv") as HTMLDivElement;
-let userId = localStorage.getItem("userId");
-console.log(userId);
-let userExists = false;
-if (userId != null) {
-  userExists = await send("userExists", userId) as boolean;
+let loggedOutDiv=document.getElementById("loggedOutDiv") as HTMLDivElement;
+async function getUserId() {
+  let userId = localStorage.getItem("userId");
+
+  if (userId == null) {
+    return null;
+  }
+
+  let varified = await send("verifyUserId", userId);
+
+  if (!varified) {
+    localStorage.removeItem("userId");
+    return null;
+  }
+
+  return userId;
 }
+let userId = await getUserId();
+console.log(userId);
+if (userId != null) {
+loggedOutDiv.classList.remove("hidden");
+  let username = await send("getUsername", userId) as string;
+  usernameDiv.innerText = "Welcome, " + username + "!";
 
-console.log(userExists);
-
-if (userExists) {
-  usernameDiv.style.display = "block";
-
-
-  let username = await send("getUsername", userId)
-  usernameDiv.innerText = "Logged In as " + username;
+} else {
+  localStorage.removeItem("userId");
 }
 
 logout.onclick = function () {
-    localStorage.removeItem("userId");
+    localStorage.removeItem("userId)");
+       loggedOutDiv.classList.add("hidden");
     alert("you did logout");
     location.href = "index.html";
+ 
+
   }
