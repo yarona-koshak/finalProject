@@ -16,3 +16,9 @@ export type Order = {
   ArtistId: number;
   TickNum: number;
 }
+export type AdminOrder ={
+  ArtistId :number;
+  PhoneNumber:string;
+   OrderName:string;
+   TickNum : number;
+}

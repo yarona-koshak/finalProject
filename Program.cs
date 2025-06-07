@@ -156,6 +156,11 @@ class Program
             var myOrder = database.Orders.Where(or => or.UserId == userId).ToArray();
           response.Send(myOrder);
           }
+          else if (request.Path == "adminOrder")
+          {
+            var adminOrder = database.Orders.ToArray();
+            response.Send(adminOrder);
+          }
           response.SetStatusCode(405);
 
           database.SaveChanges();
@@ -317,4 +322,21 @@ class Order(string userId, int artistId, int tickNum)
   public int ArtistId { get; set; } = artistId;
   [ForeignKey("ArtistId")] public Artist artist { get; set; } = default!;
   public int TickNum{ get; set; } = tickNum;
+}
+
+class AdminOrder
+(
+  int artistId,
+   string phoneNumber,
+   string orderName,
+   int tickNum
+)
+{
+  [Key] public int Id { get; set; } = default!;
+  public int ArtistId { get; set; } = artistId;
+  [ForeignKey("ArtistId")] public Artist artist { get; set; } = default!;
+  public string PhoneNumber { get; set; } = phoneNumber;
+  public string  OrderName { get; set; } = orderName;
+  public int TickNum { get; set; } = tickNum;
+  [ForeignKey("TickNum")] public Order tickNum { get; set; } = default!;
 }

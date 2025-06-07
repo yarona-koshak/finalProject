@@ -29,10 +29,12 @@ select.addEventListener("change", () => {
   }
 });
 
+let userId = await getUserId();
 let confettiContainer = document.getElementById("confetti-container") as HTMLDivElement;
 let nameInput= document.getElementById("name") as HTMLInputElement;
+if (userId != null) {
 orderBtn.onclick = function() {
-  if (nameInput.value != ""){
+  if (nameInput.value != "" ){
   if (confirm("Do you want to order")) {
       order();
   box.classList.add('box2');
@@ -52,8 +54,14 @@ else {
    window.location.href = "/website/pages/orderTickets.html";
 }
 }
+}
+else{
+  alert("you need to log in");
+   window.location.href = "/website/pages/login.html";
+}
+
 let quantity= document.getElementById("quantity")as HTMLInputElement;
-let userId = localStorage.getItem("userId");
+
 
 async function order() {
    let selectedName = select.value;
@@ -104,7 +112,22 @@ function triggerConfettiEffect() {
 }
 
 
+async function getUserId() {
+  let userId = localStorage.getItem("userId");
 
+  if (userId == null) {
+    return null;
+  }
+
+  let varified = await send("verifyUserId", userId);
+
+  if (!varified) {
+    localStorage.removeItem("userId");
+    return null;
+  }
+
+  return userId;
+}
 
 
 

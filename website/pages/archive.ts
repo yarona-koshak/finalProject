@@ -10,8 +10,7 @@ let aName = document.getElementById("aName") as HTMLInputElement;
 let aURL = document.getElementById("aURL") as HTMLInputElement;
 let vURL = document.getElementById("vURL") as HTMLInputElement;
 let artistsContainer = document.querySelector("#artistsContainer") as HTMLDivElement;
-
-
+let myOrder=document.getElementById("myOrder") as HTMLDivElement;
 let greetingDiv = document.getElementById("greetingDiv") as HTMLDivElement;
 
 async function getUserId() {
@@ -46,6 +45,8 @@ let userAdmin = localStorage.getItem("userId");
 if (userAdmin === "admin") {
   button.classList.remove("hidden");
   home.classList.add("hidden");
+  orderTiltel.innerText="Orders:";
+  adminOrder()
 }
 
 home.onclick=function(){
@@ -124,9 +125,9 @@ async function appendArtist() {
 }
 
 
-let myOrder=document.getElementById("myOrder") as HTMLDivElement;
-getOrder()
-async function getOrder() {
+
+getMyOrder()
+async function getMyOrder() {
 let order = await send("getAnOrder", userId) as Order[];
 
  for (let o of order) {
@@ -157,4 +158,9 @@ let order = await send("getAnOrder", userId) as Order[];
   };
 card.appendChild(removeOrder);
   }
+}
+
+adminOrder()
+async function adminOrder() {
+  
 }
