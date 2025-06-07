@@ -33,6 +33,7 @@ toarchivesPage.onclick = function () {
 let logout = document.getElementById("logout") as HTMLButtonElement;
 let usernameDiv = document.querySelector("#usernameDiv") as HTMLDivElement;
 let loggedOutDiv=document.getElementById("loggedOutDiv") as HTMLDivElement;
+let welcome=document.querySelector("#welcome") as HTMLDivElement;
 async function getUserId() {
   let userId = localStorage.getItem("userId");
 
@@ -53,6 +54,7 @@ let userId = await getUserId();
 console.log(userId);
 if (userId != null) {
 loggedOutDiv.classList.remove("hidden");
+welcome.classList.add("hidden");
   let username = await send("getUsername", userId) as string;
   usernameDiv.innerText = "Welcome, " + username + "!";
 
@@ -61,10 +63,10 @@ loggedOutDiv.classList.remove("hidden");
 }
 
 logout.onclick = function () {
-    localStorage.removeItem("userId)");
-       loggedOutDiv.classList.add("hidden");
+    localStorage.removeItem("userId");
     alert("you did logout");
     location.href = "index.html";
- 
-
+     loggedOutDiv.style.display = "none";
+     welcome.classList.remove("hidden");
   }
+   

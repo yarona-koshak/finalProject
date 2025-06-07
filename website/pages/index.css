@@ -1,13 +1,15 @@
 
  .headerbutton{
 
-    display: flex;
-    justify-content: flex-end; 
+    display: flex !important;
+    justify-content: flex-end !important; 
     gap: 10px;
      size: 30px; 
 }
 .editb{
     font-size: large; 
+    display: flex;
+    justify-content: flex-end; 
 }
 
         #buttonsContauner {
@@ -36,7 +38,7 @@
 
 }
 .hidden {
-    display: none !important;
+    display: none;
   }
   header{
     background-color:bisque;
