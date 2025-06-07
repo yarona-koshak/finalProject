@@ -59,13 +59,12 @@ else{
   alert("you need to log in");
    window.location.href = "/website/pages/login.html";
 }
+if(userId=="admin"){ makeAnAdminOrder(); }
 
 let quantity= document.getElementById("quantity")as HTMLInputElement;
-
-
 async function order() {
    let selectedName = select.value;
-  let selectedArtist = artistName.find(artist => artist.ArtistName === selectedName) ;
+  let selectedArtist = artistName.find(artist => artist.ArtistName === selectedName);
   console.log( typeof selectedArtist?.Id);
   console.log( typeof userId);
   console.log(typeof quantity.value);
@@ -80,7 +79,24 @@ async function order() {
   )
 }
 
-
+let phone=document.getElementById("phone")as HTMLInputElement;
+if(phone.value.length !=10){
+  alert("your phone number is ilegal");
+}
+let orderName=document.querySelector("#name")as HTMLInputElement;
+async function makeAnAdminOrder() {
+  let selectedName = select.value;
+  let selectedArtist = artistName.find(artist => artist.ArtistName === selectedName);
+  await send(
+    "makeAnAdminOrder",
+    [
+    selectedArtist?.Id,
+    phone.value,
+    orderName.value,
+    parseInt(quantity.value)
+    ]
+  )
+}
 
 function triggerConfettiEffect() {
   let i = 0;

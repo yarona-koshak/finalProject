@@ -12,7 +12,8 @@ let vURL = document.getElementById("vURL") as HTMLInputElement;
 let artistsContainer = document.querySelector("#artistsContainer") as HTMLDivElement;
 let myOrder=document.getElementById("myOrder") as HTMLDivElement;
 let greetingDiv = document.getElementById("greetingDiv") as HTMLDivElement;
-
+let adminnbut=document.getElementById("adminbut")as HTMLButtonElement;
+let admindiv=document.getElementById("admindiv") as HTMLDivElement;
 async function getUserId() {
   let userId = localStorage.getItem("userId");
 
@@ -45,8 +46,8 @@ let userAdmin = localStorage.getItem("userId");
 if (userAdmin === "admin") {
   button.classList.remove("hidden");
   home.classList.add("hidden");
-  orderTiltel.innerText="Orders:";
-  adminOrder()
+  admindiv.classList.remove("hidden");
+  
 }
 
 home.onclick=function(){
@@ -160,7 +161,6 @@ card.appendChild(removeOrder);
   }
 }
 
-adminOrder()
-async function adminOrder() {
-  
+adminnbut.onclick=function(){
+  window.location.href = "/website/pages/adminOrders.html";
 }

@@ -76,3 +76,14 @@
   grid-template-rows: repeat(2, auto);
 
 }
+
+#adminbut{
+  font-size: large;
+  width: 100px;
+  height: 80px;
+}
+#admin{
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}

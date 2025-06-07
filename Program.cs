@@ -139,6 +139,14 @@ class Program
 
             database.Orders.Add(order);
           }
+          else if (request.Path == "makeAnAdminOrder")
+          {
+            var (selectedArtist,phone, name, quantity) = request.GetBody<(int,string, string, int)>();
+
+            var order = new AdminOrder(selectedArtist,phone, name, quantity);
+
+            database.AdminOrder.Add(order);
+          }
           else if (request.Path == "removeOrder")
           {
             var (userId, ArtistId) = request.GetBody<(string, int)>();
@@ -276,6 +284,7 @@ class Database() : DbBase("database")
   public DbSet<Artist> Artists { get; set; } = default!;
   public DbSet<Artical> Articals { get; set; } = default!;
     public DbSet<Order> Orders { get; set; } = default!;
+    public DbSet<AdminOrder> AdminOrders { get; set; } = default!;
 }
 
 class User(string id, string username, string password)

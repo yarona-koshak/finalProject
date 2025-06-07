@@ -1,0 +1,1 @@
+let contener=document.getElementById("contener") as HTMLDivElement;
