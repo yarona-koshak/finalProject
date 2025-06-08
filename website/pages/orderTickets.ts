@@ -32,9 +32,15 @@ select.addEventListener("change", () => {
 let userId = await getUserId();
 let confettiContainer = document.getElementById("confetti-container") as HTMLDivElement;
 let nameInput= document.getElementById("name") as HTMLInputElement;
+let phone=document.getElementById("phone")as HTMLInputElement;
 if (userId != null) {
-orderBtn.onclick = function() {
-  if (nameInput.value != "" ){
+orderBtn.addEventListener("click", async () => {
+  if(userId== "admin"){
+    alert("you are admin you can not make an order");
+    window.location.href="/website/pages/adminOrders.html";
+  }
+  else{ 
+    if (nameInput.value != "" && phone.value.length==10){
   if (confirm("Do you want to order")) {
       order();
   box.classList.add('box2');
@@ -46,14 +52,16 @@ orderBtn.onclick = function() {
     }, 3000);
   }, { once: true });
 }
+}
+
   } 
-else {
-  if(nameInput.value==""){
+
+if(nameInput.value==""){
     alert("you can not order");
   }
    window.location.href = "/website/pages/orderTickets.html";
-}
-}
+
+});
 }
 else{
   alert("you need to log in");
@@ -79,10 +87,8 @@ async function order() {
   )
 }
 
-let phone=document.getElementById("phone")as HTMLInputElement;
-if(phone.value.length !=10){
-  alert("your phone number is ilegal");
-}
+
+
 let orderName=document.querySelector("#name")as HTMLInputElement;
 async function makeAnAdminOrder() {
   let selectedName = select.value;
@@ -144,11 +150,4 @@ async function getUserId() {
 
   return userId;
 }
-
-
-
-
-
-
-
 

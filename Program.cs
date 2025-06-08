@@ -164,9 +164,10 @@ class Program
             var myOrder = database.Orders.Where(or => or.UserId == userId).ToArray();
           response.Send(myOrder);
           }
-          else if (request.Path == "adminOrder")
+          else if (request.Path == "getAdminOrder")
           {
-            var adminOrder = database.Orders.ToArray();
+            var artistId=request.GetBody<int>();
+            var adminOrder = database.Orders.Where(ad => ad.ArtistId== artistId).ToArray();
             response.Send(adminOrder);
           }
           response.SetStatusCode(405);
@@ -321,7 +322,11 @@ class Artical(
   public string InfoURL { get; set; } = infoURL;
   public string VideoURL { get; set; } = videoURL;
 }
-class Order(string userId, int artistId, int tickNum)
+class Order(
+  string userId,
+   int artistId,
+    int tickNum
+)
 {
   [Key] public int Id { get; set; } = default!;
 
