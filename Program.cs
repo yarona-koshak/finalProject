@@ -167,7 +167,7 @@ class Program
           else if (request.Path == "getAdminOrder")
           {
             var artistId=request.GetBody<int>();
-            var adminOrder = database.Orders.Where(ad => ad.ArtistId== artistId).ToArray();
+            var adminOrder = database.AdminOrders.Where(ad => ad.ArtistId== artistId).ToArray();
             response.Send(adminOrder);
           }
           response.SetStatusCode(405);

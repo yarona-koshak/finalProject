@@ -34,41 +34,30 @@ let confettiContainer = document.getElementById("confetti-container") as HTMLDiv
 let nameInput= document.getElementById("name") as HTMLInputElement;
 let phone=document.getElementById("phone")as HTMLInputElement;
 if (userId != null) {
-orderBtn.addEventListener("click", async () => {
+orderBtn.onclick=function(){
   if(userId== "admin"){
     alert("you are admin you can not make an order");
     window.location.href="/website/pages/adminOrders.html";
   }
   else{ 
-    if (nameInput.value != "" && phone.value.length==10){
+    if (nameInput.value != ""){
   if (confirm("Do you want to order")) {
       order();
+     makeAnAdminOrder(); 
   box.classList.add('box2');
     triggerConfettiEffect();
   box.addEventListener('transitionend', () => {
     setTimeout(() => {
       alert("Congratulations!");
       window.location.href = "/website/pages/archives.html";
-    }, 3000);
+    }, 5000);
   }, { once: true });
+   
 }
 }
 
   } 
-
-if(nameInput.value==""){
-    alert("you can not order");
-  }
-   window.location.href = "/website/pages/orderTickets.html";
-
-});
-}
-else{
-  alert("you need to log in");
-   window.location.href = "/website/pages/login.html";
-}
-if(userId=="admin"){ makeAnAdminOrder(); }
-
+}}
 let quantity= document.getElementById("quantity")as HTMLInputElement;
 async function order() {
    let selectedName = select.value;
