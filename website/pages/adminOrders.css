@@ -5,4 +5,14 @@ body{
   border: 1px solid black;
   padding: 10px;
   margin: 10px;
+  width: 200px;
+  height: 200px;
+}
+#img {
+    position: fixed;
+    bottom: -100;
+    right: 50px;;
+    width: 350px;
+    height: auto;
+    z-index: 1000;
 }
