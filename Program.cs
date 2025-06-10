@@ -208,7 +208,14 @@ class Program
           "In November, MIKHAIL FELDMAN will come to visit us. Who is he? He is a poet, songwriter, performer, and also a person with a unique gift - to create palindromes. These are phrases that can be read in both directions. But he does not just come up with a sentence, like and the rose fell on Azor's paw, he comes up with entire stories with a plot in this technique. In addition, Mikhail is amazingly careful and delicate with language, his lyrics are smart, subtle and full of non-vulgar humor. And he himself is an intellectual in the truest sense of the word.The concert will take place on NOVEMBER 15 at 19:00 .Ticket price is 70 shekels.",
           70
         ),
-
+        new Artist(
+          "Svetlana and Alexander Mendelev",
+          "19.04.2025",
+          "https://stuttgart.bards.de/wordpress/wp-content/uploads/2017/08/Mendelevy-transparent.png",
+          "Good morning to all of us! First of all, I would like to thank you, my dear viewers, for your participation and support of our cultural figures.The next concert will take place on April 19th in the same place Famous Israeli bards SVETLANA AND ALEXANDER MENDELEV will perform as our guests. Their new program is a fusion of Svetlana's poetry and Alexander's precisely stylized original music.These are songs of a content close to us. About us, about our feelings, about our country and about many other beautiful and amazing things that surround and unite us.I look forward to seeing you all. Registration is open.",
+          70
+        )
+    
       };
 
       for (int i = 0; i < startBooks.Length; i++)
