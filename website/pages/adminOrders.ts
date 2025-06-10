@@ -6,17 +6,19 @@ let  seeTheOrders=document.getElementById("seeOrder") as HTMLButtonElement;
 let home=document.getElementById("home") as HTMLButtonElement;
 let allOrders=document.querySelector("#allOrders") as HTMLDivElement;
 let isVisible = false;
-
+VisiblePlace();
 seeTheOrders.addEventListener("click", () => {
     if (isVisible) {
         allOrders.innerHTML = ""; 
+        place.classList.remove("hidden");
     } else {
         allOrser();
+         place.classList.add("hidden");
     }
     isVisible = !isVisible;
 });
 
-VisiblePlace();
+
 
 
 
@@ -66,12 +68,12 @@ for(let a of artist){
   let ticket= document.createElement("div");
   let sum=0;
   for(let i=0; i< orders.length;i++){
-    sum=+ orders[i].TickNum;
+    sum=sum+orders[i].TickNum ;
   }
   ticket.innerText="to this had bought "+sum+" tickets";
   console.log(ticket);
   let ststus=false;
-  if(ticket.innerText<="70"){
+  if(sum<=70){
     ststus=true;
   }
   let placetick=document.createElement("div");
@@ -83,6 +85,6 @@ for(let a of artist){
 placetick.innerText="sold out";
   }
   div.appendChild(ticket);
-  div.appendChild(placetick);8nn
+  div.appendChild(placetick);
      }
 }

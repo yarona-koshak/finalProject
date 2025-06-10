@@ -7,12 +7,31 @@ body{
   margin: 10px;
   width: 200px;
   height: 200px;
+  background-color: aliceblue;
+  gap: 20px;
+      justify-content: center;
+      margin: 20px;
 }
 #img {
     position: fixed;
     bottom: -100;
     right: 50px;;
-    width: 350px;
+    width: 550px;
     height: auto;
     z-index: 1000;
 }
+
+   .hidden {
+      display: none;
+    }
+#allOrders{
+   display: grid;
+      grid-auto-flow: column;
+      grid-auto-rows: auto;
+      grid-template-rows: repeat(3, auto);
+      row-gap: 20px;
+      column-gap: 10px;
+   
+    }
+   
+      

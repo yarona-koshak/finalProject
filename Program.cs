@@ -14,9 +14,7 @@ class Program
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/index.html");
 
     var database = new Database();
-    // var articalToDelete = database.Users.Find(2);
-    // database.Users.Remove(articalToDelete);
-    // database.SaveChanges();
+
     AddStartBooks(database);
     AddStartArticals(database);
 
@@ -206,8 +204,8 @@ class Program
         new Artist(
           "Mikhail Feldman",
           "15.11.2024",
-          "https://new.antho.net/wp/wp-content/uploads/2019/08/%D0%9C%D0%B8%D1%88%D0%B0-%D0%A4%D0%B5%D0%BB%D1%8C%D0%B4%D0%BC%D0%B0%D0%BD.jpg",
-          "aaa ijkljnilb",
+          "https://i.ytimg.com/vi/uFPmyJICxRc/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGF4gXiheMA8=&rs=AOn4CLALbPKkefC4dOG2IxjlV2cYiqe5cg",
+          "In November, MIKHAIL FELDMAN will come to visit us. Who is he? He is a poet, songwriter, performer, and also a person with a unique gift - to create palindromes. These are phrases that can be read in both directions. But he does not just come up with a sentence, like and the rose fell on Azor's paw, he comes up with entire stories with a plot in this technique. In addition, Mikhail is amazingly careful and delicate with language, his lyrics are smart, subtle and full of non-vulgar humor. And he himself is an intellectual in the truest sense of the word.The concert will take place on NOVEMBER 15 at 19:00 .Ticket price is 70 shekels.",
           70
         ),
 
@@ -227,37 +225,37 @@ class Program
     {
       var startArticals = new Artical[] {
         new Artical(
-          "Михаил Фельдман",
+          "Mikhail Feldman",
           "https://did.li/i7Rrl",
           "https://www.youtube.com/watch?v=emuwEdrcBUA"
         ),
         new Artical(
-          "Михаил Волков",
+          "Mikhail Volkov",
           "https://did.li/weBgT",
           "https://www.youtube.com/watch?v=QGgZYWl_dMo"
         ),
         new Artical(
-          "Александр Дов",
+          "Alexander Dov",
           "https://did.li/Np4TY",
           "https://www.youtube.com/watch?v=sUzbqcRCZ6E"
         ),
         new Artical(
-          "Эли Бар-Яалом",
+          "Eli Bar-Yahalom",
           "https://did.li/akk6q",
           "https://www.youtube.com/watch?v=OqFQIDFFGLY"
         ),
         new Artical(
-          "Ариэла Марина Меламед",
+          "Ariela Marina Melamed",
           "https://did.li/Op4TY",
           "https://www.youtube.com/watch?v=cUbuh1GQn28"
         ),
         new Artical(
-          "Кимельфельд",
+          "Kimelfeld",
           "https://did.li/DXpOf",
           "https://www.youtube.com/watch?v=68FFjsz9ypw"
         ),
         new Artical(
-          "Светлана и Александр Менделевы",
+          "Svetlana and Alexander Mendelev",
           "https://did.li/h49CN",
           "https://www.youtube.com/watch?v=fwITedTbR9o"
         ),
