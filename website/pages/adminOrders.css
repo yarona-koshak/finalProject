@@ -14,11 +14,11 @@ body{
 }
 #img {
     position: fixed;
-    bottom: -100;
+    bottom: 150px;
     right: 50px;;
-    width: 550px;
+    width: 350px;
     height: auto;
-    z-index: 1000;
+   
 }
 
    .hidden {
@@ -29,9 +29,18 @@ body{
       grid-auto-flow: column;
       grid-auto-rows: auto;
       grid-template-rows: repeat(3, auto);
-      row-gap: 20px;
-      column-gap: 10px;
+      row-gap: 10px;
+      column-gap: 5px;
    
     }
    
-      
+      #place{
+        display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  display: grid;
+      grid-auto-rows: auto;
+      grid-template-columns: repeat(3, auto);
+      row-gap: 20px;
+      column-gap: 10px;
+      }
