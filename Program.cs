@@ -351,6 +351,7 @@ class AdminOrder
   [ForeignKey("ArtistId")] public Artist artist { get; set; } = default!;
   public string PhoneNumber { get; set; } = phoneNumber;
   public string  OrderName { get; set; } = orderName;
+    [ForeignKey("TickNum")] public Order tickNum { get; set; } = default!;
   public int TickNum { get; set; } = tickNum;
-  [ForeignKey("TickNum")] public Order tickNum { get; set; } = default!;
+
 }

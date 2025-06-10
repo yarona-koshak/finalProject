@@ -33,6 +33,7 @@ for(let a of artist){
    card.appendChild(artistTeitel);
    card.appendChild(div);
   }
+ 
 }
 }
 home.onclick=function(){
