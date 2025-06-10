@@ -147,12 +147,15 @@ class Program
           }
           else if (request.Path == "removeOrder")
           {
-            var (userId, ArtistId) = request.GetBody<(string, int)>();
+            var (userId, artistId) = request.GetBody<(string, int)>();
 
             var favorite = database.Orders.First(
-              favorite => favorite.UserId == userId && favorite.ArtistId == ArtistId
+              favorite => favorite.UserId == userId && favorite.ArtistId == artistId
             );
-
+            var orderAdmin=database.AdminOrders.First(
+              or=>or.ArtistId==artistId
+            );
+            database.AdminOrders.Remove(orderAdmin);
             database.Orders.Remove(favorite);
           }
            else if (request.Path == "getAnOrder")
